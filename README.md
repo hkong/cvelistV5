@@ -1,5 +1,7 @@
 # CVE List V5
 
+> Development use only.  DO NOT USE THIS REPOSITORY FOR CVE CACHING.  USE [CVEProject/cvelistV5](https://github.com/CVEProject/cvelistV5) instead.
+
 The [CVE List](https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryCVEList) is catalog of all [CVE Records](https://www.cve.org/ResourcesSupport/Glossary?activeTerm=glossaryRecord) identified by, or reported to, the [CVE Program](https://www.cve.org/).
 
 This repository hosts bulk download files of CVE Records in [CVE JSON 5.0 format](https://www.cve.org/AllResources/CveServices#cve-json-5) (view the [schema](https://github.com/CVEProject/cve-schema)). You may search, download, and use the content hosted in this repository, per the [CVE Program Terms of Use](https://www.cve.org/Legal/TermsOfUse).

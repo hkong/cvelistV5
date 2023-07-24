@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { Octokit } from "octokit";
-import { GenericCommand } from './GenericCommand.js';
+import { GenericCommand } from '../../commands/GenericCommand.js';
 export declare class GithubCommand extends GenericCommand {
     constructor(program: Command);
     /** connects to github using the env specified access token, owner, and repo

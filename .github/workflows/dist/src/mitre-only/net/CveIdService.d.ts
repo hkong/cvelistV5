@@ -3,7 +3,7 @@
  *  Note that the location of the CVE Services API, username, password, tokens, etc., is
  *    set in the project's .env file.
  */
-import { ApiService } from './ApiService.js';
+import { ApiBaseService } from '../../net/ApiBaseService.js';
 export interface CveIdResponse {
     cve_ids: CveIdData[];
     totalCount: number;
@@ -37,21 +37,10 @@ export interface CveIdApiOptions {
     time_modified_lt?: string;
     time_modified_gt?: string;
 }
-export declare class CveIdService extends ApiService {
+export declare class CveIdService extends ApiBaseService {
     constructor();
-    /** returns all the pages for a set of options
-     *  Note, however, that due to a bug, if the total number of items exceeds
-     *    some large number (e.g., records in 2020), then the server returns
-     *         "error": "SERVICE_NOT_AVAILABLE",
-     *    so for now, to get all the records for a given year, it is safer
-     *    to use getCveIdsUsingYear() below, which divides each year and
-     *    calls this function summing up all results
-     */
     getAllCveIdsPages(options: CveIdApiOptions): Promise<CveIdResponse>;
-    /** returns the CVE IDs from a specified year by breaking the year
-     *  into quarters and summing each quarter.  This is because when the
-     *  number of records for a year exceeds some large number, the server
-     *  responds with "error": "SERVICE_NOT_AVAILABLE"
+    /** returns the CVE IDs from a specified year
      *
      */
     getCveIdsUsingYear(year: string): Promise<CveIdResponse>;

@@ -1,7 +1,15 @@
 /**
- *  Delta object, calculates deltas in activities
+ *  This is the Delta class.  A delta is a list of files in a directory whose content changed from time T1 to T2.
+ *  Changes can be a new added file, updated file, or deleted file (though currently, we do not work with deleted
+ *  files since no CVEs should ever be deleted once it is published).
+ *
+ *  Note that this class REQUIRES git and a git history.  It does not look at files, only git commits in git history.
+ *  So during testing, simply copying /cves from another directory WILL NOT WORK because git history
+ *  does not have those commits.
+ *  However, if you need to make zip files, it will copy files to a directory, and zip that, so the /cves directory
+ *  will need to be in the current directory
  */
-import { CveCore } from './CveCore.js';
+import { CveCorePlus } from './CveCorePlus.js';
 export declare type IsoDate = string;
 export declare enum DeltaQueue {
     kNew = 1,
@@ -11,9 +19,9 @@ export declare enum DeltaQueue {
 }
 export declare class Delta {
     numberOfChanges: number;
-    new: CveCore[];
-    updated: CveCore[];
-    unknown: CveCore[];
+    new: CveCorePlus[];
+    updated: CveCorePlus[];
+    unknown: CveCorePlus[];
     /** constructor
      *  @param prevDelta a previous delta to intialize this object, essentially appending new
      *                   deltas to the privous ones (default is none)
@@ -23,13 +31,15 @@ export declare class Delta {
      * Factory that generates a new Delta from git log based on a time window
      * @param start git log start time window
      * @param stop git log stop time window (defaults to now)
+     * @param repository directory to get git info from (defaults to process.env.CVES_BASE_DIRECTORY)
+     * @param fullCveCore when set to true, it will read andfill CveCorePlus properties from the corresponding files in local repository
      */
-    static newDeltaFromGitHistory(start: string, stop?: string, repository?: string): Promise<Delta>;
+    static newDeltaFromGitHistory(start: string, stop?: string, repository?: string, fullCveCore?: boolean): Promise<Delta>;
     /** returns useful metadata given a repository filespec:
      *   - its CVE ID (for example, CVE-1970-0001)
      *   - its partial path in the repository (for example, ./abc/def/CVE-1970-0001)
      *  @param path a full or partial filespec (for example, ./abc/def/CVE-1970-0001.json)
-     *  @todo should be in a separate CveId or Cve class
+     *  @todo should be in a separate CveId or CveRecord class
      */
     static getCveIdMetaData(path: string): [string | undefined, string | undefined];
     /** calculates the delta filtering using the specified directory
@@ -52,21 +62,21 @@ export declare class Delta {
      */
     calculateNumDelta(): number;
     /** adds a cveCore object into one of the queues in a delta object
-     *  @param cve a CveCore object to be added
+     *  @param cve a CveCorePlus object to be added
      *  @param queue the DeltaQueue enum specifying which queue to add to
      */
-    add(cve: CveCore, queue: DeltaQueue): void;
+    add(cve: CveCorePlus, queue: DeltaQueue): void;
     /** summarize the information in this Delta object in human-readable form */
     toText(): string;
     /** writes the delta to a JSON file
      *  @param relFilepath relative path from current directory
-    */
+     */
     writeFile(relFilepath?: string): void;
     /**
      * Copies delta CVEs to a specified directory, and optionally zip the resulting directory
      * @param relDir optional relative path from current directory to write the delta CVEs, default is `deltas` directory
      * @param zipFile optional relative path from the current directory to write the zip file, default is NOT to write to zip
      */
-    writeCves(relDir?: string, zipFile?: any): void;
+    writeCves(relDir?: string | undefined, zipFile?: string | undefined): void;
     writeTextFile(relFilepath?: string): void;
 }

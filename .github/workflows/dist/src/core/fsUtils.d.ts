@@ -1,6 +1,7 @@
 /** a wrapper/fascade class to make it easier to work with the file system SYNCRHONOUSLY */
 export declare class FsUtils {
     path: string;
+    constructor(path: any);
     /**
      * synchronously returns whether the path exists
      * (very thin wrapper for fs.existsSync which is NOT deprecated, unlike fs.exists)

@@ -14,21 +14,16 @@ export declare class CveRecord implements CveRecordV5 {
     /** reads in a proper CVE Record JSON v5 format obj (e.g., JSON.parse()'d content of a file or the response from the CVE API 2.1)
      *  @param obj a Javascript object that conforms to the CVE Record JSON v5 format specification
      *  @todo verify it is a CVE Record JSON v5 format format that we know how to work with
-     */
+    */
     constructor(obj: CveRecordV5);
     /** factory method that synchronously reads in a CVE Record from a CVE JSON 5.0 formatted file
      *  @param relFilepath relative or full path to the file
      *  @returns a CveRecord
      */
-    static fromJsonFile(relFilepath: string): CveRecord | undefined;
-    /** returns the description from containers.cna.descriptions that has the language specified
-     * @param lang the ISO 639-1 lanugage code (defaults to 'en', which will also match 'en', 'En-US', 'en-uk', etc.)
-     * @returns the description, or undefined if it can't find the description in the specified language
-     */
-    getDescription(lang?: string): string | undefined;
+    static fromJsonFile(relFilepath: string): CveRecord;
     /** returns the git hub repository partial path this CveRecord should go into
      *  @returns string representing the partial path the cve belongs in (e.g., /1999/1xxx/CVE-1999-0001)
-     */
+    */
     toCvePath(): string;
     /** prints object in JSON format
      *  @param prettyPrint boolean to set pretty printing (default is true)

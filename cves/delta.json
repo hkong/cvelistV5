@@ -1,21 +1,27 @@
 {
-  "fetchTime": "2023-09-12T15:16:43.970Z",
-  "durationInMsecs": 2337,
-  "numberOfChanges": 2,
+  "fetchTime": "2023-09-12T15:26:38.927Z",
+  "durationInMsecs": 2046,
+  "numberOfChanges": 3,
   "new": [
     {
-      "cveId": "CVE-2023-0119",
-      "cveOrgLink": "https://cveawg.mitre.org/api/cve/CVE-2023-0119",
-      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/0xxx/CVE-2023-0119.json",
-      "dateUpdated": "2023-09-12T15:14:29.533Z"
+      "cveId": "CVE-2023-34469",
+      "cveOrgLink": "https://cveawg.mitre.org/api/cve/CVE-2023-34469",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/34xxx/CVE-2023-34469.json",
+      "dateUpdated": "2023-09-12T15:21:11.450Z"
+    },
+    {
+      "cveId": "CVE-2023-34470",
+      "cveOrgLink": "https://cveawg.mitre.org/api/cve/CVE-2023-34470",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/34xxx/CVE-2023-34470.json",
+      "dateUpdated": "2023-09-12T15:21:58.331Z"
     }
   ],
   "updated": [
     {
-      "cveId": "CVE-2023-36191",
-      "cveOrgLink": "https://cveawg.mitre.org/api/cve/CVE-2023-36191",
-      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/36xxx/CVE-2023-36191.json",
-      "dateUpdated": "2023-09-12T15:12:53.708200"
+      "cveId": "CVE-2020-22916",
+      "cveOrgLink": "https://cveawg.mitre.org/api/cve/CVE-2020-22916",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/22xxx/CVE-2020-22916.json",
+      "dateUpdated": "2023-09-12T15:18:50.437830"
     }
   ],
   "unknown": []

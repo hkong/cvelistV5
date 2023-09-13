@@ -2,7 +2,7 @@
  *  CveCore is made up of the metadata portion of a CVE JSON 5 object
  *  Note that it is convenient to store additional data for some operations,
  *  and for that, the CveCorePlus object should be used
-\ */
+ */
 import { CveId } from './CveId.js';
 import { CveMetadata } from '../generated/quicktools/CveRecordV5.js';
 import { CveRecord } from './CveRecord.js';
@@ -35,7 +35,6 @@ export declare class CveCore {
      */
     static getCveIdfromRepositoryFilePath(path: string): string;
     /**
-     * @todo this really belongs in CveId, not here, especially now that we have updateFromRepositoryFile
      * returns the CveId from a full or partial path (assuming the file is in the repository directory)
      *  @param path the full or partial file path to CVE JSON file
      *  @returns the CveId calculated from the filename

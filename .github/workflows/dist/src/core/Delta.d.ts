@@ -29,6 +29,8 @@ export declare enum DeltaQueue {
  * before and after the AWG meeting on 8/22
  */
 export declare class DeltaOutpuItem {
+    static _cveOrgPrefix: string;
+    static _githubRawJsonPrefix: string;
     cveId: string;
     cveOrgLink?: string;
     githubLink?: string;

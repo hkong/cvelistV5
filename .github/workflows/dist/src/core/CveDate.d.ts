@@ -4,16 +4,19 @@
  *      ISO format:  2023-03-29T00:00:00.000Z
  *    - provide timer functions inside instances
  *
- * This is necessary because the Javascript Date object, while tracking UTC time
- * internally (that is, the number of milliseconds since 1970-01-01T00:00:00.000Z)
- * does not provide many functions to work with that time zone, choosing local time zone
- * in most cases.  The exceptions are new Date("<UTC timestamp>") and toISOString().
+ *  This is necessary because the Javascript Date object, while tracking UTC time
+ *  internally (that is, the number of milliseconds since 1970-01-01T00:00:00.000Z)
+ *  does not provide many functions to work with that time zone, choosing local time zone
+ *  in most cases.  The exceptions are new Date("<UTC timestamp>") and toISOString().
  *
- * This class provides additional functions to meet the needs of this project.
+ *  This class provides additional functions to meet the needs of this project.
  *
- * Throughout this class, we will use
- *  - jsDate to represent a standard JS Date object
- *  - isoDateStr to represent an ISO/UTC/Z date string (e.g. 2023-03-29T00:00:00.000Z)
+ *  In most cases in this project, since we deal with ISO dates almost exclusively,
+ *  we are moving to common/IsoDateString.
+ *
+ *  Throughout this class, we will use
+ *    - jsDate to represent a standard JS Date object
+ *    - isoDateStr to represent an ISO/UTC/Z date string (e.g. 2023-03-29T00:00:00.000Z)
  */
 import { IsoDateString } from '../common/IsoDateString.js';
 export declare class CveDate {

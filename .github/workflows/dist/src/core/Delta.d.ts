@@ -16,7 +16,7 @@ export declare enum DeltaQueue {
     kNew = 1,
     kPublished = 2,
     kUpdated = 3,
-    kUnknown = 4
+    kError = 4
 }
 /**
  * Output JSON format for delta.json and deltaLog.json based on feedback
@@ -46,11 +46,10 @@ export declare class DeltaOutpuItem {
 }
 export declare class Delta {
     fetchTime?: string;
-    durationInMsecs?: number;
     numberOfChanges: number;
     new: CveCorePlus[];
     updated: CveCorePlus[];
-    unknown?: CveCorePlus[];
+    error?: CveCorePlus[];
     /** constructor
      *  @param prevDelta a previous delta to intialize this object, essentially prepending new
      *                   deltas to the privous ones (default is none)

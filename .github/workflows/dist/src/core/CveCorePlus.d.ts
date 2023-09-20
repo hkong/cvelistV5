@@ -45,6 +45,7 @@ export declare class CveCorePlus extends CveCore {
      * @returns a CveCorePlus object
      */
     static fromCveRecord(cve: CveRecord): CveCorePlus;
+    set(metadata: Partial<CveMetadata>): void;
     /**
      * update CveCorePlus with additional data from the repository
      * @returns true iff a JSON file was found and readable to fill in

@@ -14,6 +14,7 @@ import { IsoDateString } from '../common/IsoDateString.js';
 export declare class DeltaLog extends Array<Delta> {
     static kDeltaLogFilename: string;
     static kDeltaLogFile: string;
+    /** constructor */
     constructor();
     /** constructs a DeltaLog by reading in the deltaLog file
      *  @param pruneOlderThan optional ISO date, any items older than that date will
@@ -27,10 +28,12 @@ export declare class DeltaLog extends Array<Delta> {
      * @param delta the Delta object to prepend
      */
     prepend(delta: Delta): void;
-    /** sorts the Deltas in place by date
-     *  @param direction: "latestFirst" | "latestLast"
+    /** sorts the Deltas in place by the `fetchTime` property
+     *  @param direction: one of
+     *            - "latestFirst" - reverse chronological order (default)
+     *            - "latestLast" - chronological order
     */
-    sortByFetchTme(direction: "latestFirst" | "latestLast"): DeltaLog;
+    sortByFetchTme(direction?: "latestFirst" | "latestLast"): DeltaLog;
     /** writes deltas to a file
      *  @param relFilepath optional relative or full filepath
      *  @returns true iff the file was written (which only happens when

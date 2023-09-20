@@ -28,6 +28,7 @@ export declare class CveCore {
      */
     static fromCveMetadata(metadata: Partial<CveMetadata>): CveCore;
     set(metadata: Partial<CveMetadata>): void;
+    updateFromJsonString(jsonstr: string): void;
     /**
      * returns the CveId from a full or partial path (assuming the file is in the repository directory)
      *  @param path the full or partial file path to CVE JSON file

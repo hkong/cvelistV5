@@ -7,6 +7,7 @@
  *    this strict and opinionated set is very useful for processing ISO Date+Time+TZ strings
  */
 export declare const IsoDateStringRegEx: RegExp;
+export declare const GregorianLeapDateRegEx: RegExp;
 export declare class IsoDateString {
     _isoDateString: string;
     _date: Date;

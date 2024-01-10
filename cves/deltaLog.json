@@ -1,5 +1,32 @@
 [
   {
+    "fetchTime": "2024-01-10T14:12:08.705Z",
+    "numberOfChanges": 3,
+    "new": [
+      {
+        "cveId": "CVE-2024-0389",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0389",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0389.json",
+        "dateUpdated": "2024-01-10T14:00:04.963Z"
+      },
+      {
+        "cveId": "CVE-2024-0395",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0395",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0395.json",
+        "dateUpdated": "2024-01-10T14:08:46.444Z"
+      }
+    ],
+    "updated": [
+      {
+        "cveId": "CVE-2023-31606",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-31606",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/31xxx/CVE-2023-31606.json",
+        "dateUpdated": "2024-01-10T14:06:16.080766"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2024-01-10T13:42:00.996Z",
     "numberOfChanges": 1,
     "new": [
@@ -63691,34 +63718,6 @@
         "dateUpdated": "2023-12-11T15:42:34.919Z"
       }
     ],
-    "error": []
-  },
-  {
-    "fetchTime": "2023-12-11T14:09:11.042Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2023-6194",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-6194",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/6xxx/CVE-2023-6194.json",
-        "dateUpdated": "2023-12-11T14:04:51.680Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2023-12-11T13:55:14.834Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2023-6671",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-6671",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/6xxx/CVE-2023-6671.json",
-        "dateUpdated": "2023-12-11T13:53:59.380Z"
-      }
-    ],
-    "updated": [],
     "error": []
   }
 ]

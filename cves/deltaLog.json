@@ -1,5 +1,25 @@
 [
   {
+    "fetchTime": "2024-01-11T15:36:59.594Z",
+    "numberOfChanges": 2,
+    "new": [
+      {
+        "cveId": "CVE-2023-51987",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-51987",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/51xxx/CVE-2023-51987.json",
+        "dateUpdated": "2024-01-11T15:30:11.402213"
+      },
+      {
+        "cveId": "CVE-2023-51989",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-51989",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/51xxx/CVE-2023-51989.json",
+        "dateUpdated": "2024-01-11T15:33:41.231403"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-01-11T15:28:52.103Z",
     "numberOfChanges": 2,
     "new": [
@@ -65496,20 +65516,6 @@
         "dateUpdated": "2023-12-12T15:42:12.885Z"
       }
     ],
-    "error": []
-  },
-  {
-    "fetchTime": "2023-12-12T15:36:53.206Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2009-4123",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2009-4123",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2009/4xxx/CVE-2009-4123.json",
-        "dateUpdated": "2023-12-12T15:35:55.501035"
-      }
-    ],
-    "updated": [],
     "error": []
   }
 ]

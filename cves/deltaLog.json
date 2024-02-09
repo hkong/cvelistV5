@@ -1,5 +1,31 @@
 [
   {
+    "fetchTime": "2024-02-09T22:30:35.184Z",
+    "numberOfChanges": 3,
+    "new": [
+      {
+        "cveId": "CVE-2023-6935",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-6935",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/6xxx/CVE-2023-6935.json",
+        "dateUpdated": "2024-02-09T22:25:04.663Z"
+      },
+      {
+        "cveId": "CVE-2024-24828",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-24828",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/24xxx/CVE-2024-24828.json",
+        "dateUpdated": "2024-02-09T22:21:04.933Z"
+      },
+      {
+        "cveId": "CVE-2024-25109",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-25109",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/25xxx/CVE-2024-25109.json",
+        "dateUpdated": "2024-02-09T22:25:48.347Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-02-09T22:19:51.620Z",
     "numberOfChanges": 1,
     "new": [
@@ -47346,26 +47372,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-42000",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/42xxx/CVE-2023-42000.json",
         "dateUpdated": "2024-01-10T22:50:45.332Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-01-10T22:29:43.114Z",
-    "numberOfChanges": 2,
-    "new": [],
-    "updated": [
-      {
-        "cveId": "CVE-2023-4255",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-4255",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/4xxx/CVE-2023-4255.json",
-        "dateUpdated": "2024-01-10T22:23:42.790Z"
-      },
-      {
-        "cveId": "CVE-2023-4256",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-4256",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/4xxx/CVE-2023-4256.json",
-        "dateUpdated": "2024-01-10T22:23:42.950Z"
       }
     ],
     "error": []

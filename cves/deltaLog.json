@@ -1,5 +1,38 @@
 [
   {
+    "fetchTime": "2024-02-21T18:27:12.467Z",
+    "numberOfChanges": 4,
+    "new": [
+      {
+        "cveId": "CVE-2024-22473",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-22473",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/22xxx/CVE-2024-22473.json",
+        "dateUpdated": "2024-02-21T18:13:10.241Z"
+      }
+    ],
+    "updated": [
+      {
+        "cveId": "CVE-2024-1212",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-1212",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/1xxx/CVE-2024-1212.json",
+        "dateUpdated": "2024-02-21T18:15:37.974Z"
+      },
+      {
+        "cveId": "CVE-2024-1708",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-1708",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/1xxx/CVE-2024-1708.json",
+        "dateUpdated": "2024-02-21T18:25:58.766Z"
+      },
+      {
+        "cveId": "CVE-2024-1709",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-1709",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/1xxx/CVE-2024-1709.json",
+        "dateUpdated": "2024-02-21T18:25:45.687Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2024-02-21T18:09:38.497Z",
     "numberOfChanges": 3,
     "new": [
@@ -46754,20 +46787,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0606",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0606.json",
         "dateUpdated": "2024-01-22T18:23:25.606Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-01-22T18:21:09.849Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2024-0204",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0204",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0204.json",
-        "dateUpdated": "2024-01-22T18:05:13.194Z"
       }
     ],
     "updated": [],

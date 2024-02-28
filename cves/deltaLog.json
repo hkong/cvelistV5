@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2024-02-28T11:25:04.488Z",
+    "numberOfChanges": 1,
+    "new": [
+      {
+        "cveId": "CVE-2024-24773",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-24773",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/24xxx/CVE-2024-24773.json",
+        "dateUpdated": "2024-02-28T11:24:58.179Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-02-28T10:11:15.652Z",
     "numberOfChanges": 1,
     "new": [
@@ -44988,54 +45002,6 @@
         "dateUpdated": "2024-01-29T12:20:34.325Z"
       }
     ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-01-29T11:21:27.565Z",
-    "numberOfChanges": 2,
-    "new": [],
-    "updated": [
-      {
-        "cveId": "CVE-2023-4255",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-4255",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/4xxx/CVE-2023-4255.json",
-        "dateUpdated": "2024-01-29T11:14:32.260Z"
-      },
-      {
-        "cveId": "CVE-2023-4256",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-4256",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/4xxx/CVE-2023-4256.json",
-        "dateUpdated": "2024-01-29T11:14:32.286Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-01-29T11:13:48.721Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2023-5378",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-5378",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/5xxx/CVE-2023-5378.json",
-        "dateUpdated": "2024-01-29T11:11:11.608Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-01-29T10:28:45.940Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2023-46838",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-46838",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/46xxx/CVE-2023-46838.json",
-        "dateUpdated": "2024-01-29T10:18:48.418Z"
-      }
-    ],
-    "updated": [],
     "error": []
   }
 ]

@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2024-03-06T20:23:07.906Z",
+    "numberOfChanges": 1,
+    "new": [
+      {
+        "cveId": "CVE-2024-27916",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-27916",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/27xxx/CVE-2024-27916.json",
+        "dateUpdated": "2024-03-06T20:21:22.125Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-03-06T20:12:11.961Z",
     "numberOfChanges": 1,
     "new": [
@@ -43964,39 +43978,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-40546",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/40xxx/CVE-2023-40546.json",
         "dateUpdated": "2024-02-05T20:30:02.237Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-02-05T20:13:07.403Z",
-    "numberOfChanges": 4,
-    "new": [
-      {
-        "cveId": "CVE-2024-22567",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-22567",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/22xxx/CVE-2024-22567.json",
-        "dateUpdated": "2024-02-05T20:01:31.734269"
-      },
-      {
-        "cveId": "CVE-2024-24807",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-24807",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/24xxx/CVE-2024-24807.json",
-        "dateUpdated": "2024-02-05T20:09:36.891Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2023-40551",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-40551",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/40xxx/CVE-2023-40551.json",
-        "dateUpdated": "2024-02-05T20:00:39.140Z"
-      },
-      {
-        "cveId": "CVE-2024-0565",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0565",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0565.json",
-        "dateUpdated": "2024-02-05T20:00:41.801Z"
       }
     ],
     "error": []

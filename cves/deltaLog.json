@@ -1,5 +1,31 @@
 [
   {
+    "fetchTime": "2024-03-13T21:37:15.283Z",
+    "numberOfChanges": 3,
+    "new": [
+      {
+        "cveId": "CVE-2020-11862",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2020-11862",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/11xxx/CVE-2020-11862.json",
+        "dateUpdated": "2024-03-13T21:32:24.413Z"
+      },
+      {
+        "cveId": "CVE-2024-2079",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-2079",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2079.json",
+        "dateUpdated": "2024-03-13T21:32:55.441Z"
+      },
+      {
+        "cveId": "CVE-2024-2242",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-2242",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2242.json",
+        "dateUpdated": "2024-03-13T21:32:56.042Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-03-13T21:21:06.598Z",
     "numberOfChanges": 19,
     "new": [
@@ -44926,34 +44952,6 @@
       }
     ],
     "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-02-12T21:36:28.094Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2024-23759",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-23759",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/23xxx/CVE-2024-23759.json",
-        "dateUpdated": "2024-02-12T21:30:38.851639"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-02-12T21:28:42.145Z",
-    "numberOfChanges": 1,
-    "new": [],
-    "updated": [
-      {
-        "cveId": "CVE-2024-0685",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-0685",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/0xxx/CVE-2024-0685.json",
-        "dateUpdated": "2024-02-12T21:25:50.189Z"
-      }
-    ],
     "error": []
   }
 ]

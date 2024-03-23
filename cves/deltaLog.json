@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2024-03-23T17:32:59.592Z",
+    "numberOfChanges": 1,
+    "new": [
+      {
+        "cveId": "CVE-2024-2849",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-2849",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2849.json",
+        "dateUpdated": "2024-03-23T17:31:04.908Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-03-23T17:12:52.249Z",
     "numberOfChanges": 1,
     "new": [],
@@ -42514,41 +42528,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-25802",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/25xxx/CVE-2024-25802.json",
         "dateUpdated": "2024-02-22T17:35:09.675284"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-02-22T17:30:10.431Z",
-    "numberOfChanges": 2,
-    "new": [
-      {
-        "cveId": "CVE-2024-25802",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-25802",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/25xxx/CVE-2024-25802.json",
-        "dateUpdated": "2024-02-22T17:25:01.065955"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2024-25801",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-25801",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/25xxx/CVE-2024-25801.json",
-        "dateUpdated": "2024-02-22T17:26:16.308090"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-02-22T17:22:24.301Z",
-    "numberOfChanges": 1,
-    "new": [],
-    "updated": [
-      {
-        "cveId": "CVE-2023-52160",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-52160",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/52xxx/CVE-2023-52160.json",
-        "dateUpdated": "2024-02-22T17:13:13.415989"
       }
     ],
     "error": []

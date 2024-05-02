@@ -1,5 +1,31 @@
 [
   {
+    "fetchTime": "2024-05-02T22:20:13.314Z",
+    "numberOfChanges": 3,
+    "new": [],
+    "updated": [
+      {
+        "cveId": "CVE-2022-31621",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2022-31621",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/31xxx/CVE-2022-31621.json",
+        "dateUpdated": "2024-05-02T22:06:14.390385"
+      },
+      {
+        "cveId": "CVE-2022-31622",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2022-31622",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/31xxx/CVE-2022-31622.json",
+        "dateUpdated": "2024-05-02T22:07:56.504164"
+      },
+      {
+        "cveId": "CVE-2022-31623",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2022-31623",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/31xxx/CVE-2022-31623.json",
+        "dateUpdated": "2024-05-02T22:09:03.028153"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2024-05-02T22:02:05.248Z",
     "numberOfChanges": 1,
     "new": [],
@@ -63543,26 +63569,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3207",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3207.json",
         "dateUpdated": "2024-04-02T22:31:07.068Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-04-02T22:13:31.303Z",
-    "numberOfChanges": 2,
-    "new": [
-      {
-        "cveId": "CVE-2024-3203",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3203",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3203.json",
-        "dateUpdated": "2024-04-02T22:00:06.695Z"
-      },
-      {
-        "cveId": "CVE-2024-3204",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3204",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3204.json",
-        "dateUpdated": "2024-04-02T22:00:08.396Z"
       }
     ],
     "updated": [],

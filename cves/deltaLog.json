@@ -1,5 +1,44 @@
 [
   {
+    "fetchTime": "2024-05-13T13:23:32.926Z",
+    "numberOfChanges": 5,
+    "new": [
+      {
+        "cveId": "CVE-2023-52656",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-52656",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/52xxx/CVE-2023-52656.json",
+        "dateUpdated": "2024-05-13T13:12:35.333Z"
+      },
+      {
+        "cveId": "CVE-2024-35048",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-35048",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/35xxx/CVE-2024-35048.json",
+        "dateUpdated": "2024-05-13T13:20:25.886279"
+      },
+      {
+        "cveId": "CVE-2024-35049",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-35049",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/35xxx/CVE-2024-35049.json",
+        "dateUpdated": "2024-05-13T13:20:26.351791"
+      },
+      {
+        "cveId": "CVE-2024-35050",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-35050",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/35xxx/CVE-2024-35050.json",
+        "dateUpdated": "2024-05-13T13:20:26.306714"
+      }
+    ],
+    "updated": [
+      {
+        "cveId": "CVE-2024-33931",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-33931",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/33xxx/CVE-2024-33931.json",
+        "dateUpdated": "2024-05-13T13:07:05.129Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2024-05-13T13:02:34.798Z",
     "numberOfChanges": 1,
     "new": [
@@ -56415,20 +56454,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3736",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3736.json",
         "dateUpdated": "2024-04-13T14:00:06.364Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-04-13T13:13:47.361Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2024-3735",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3735",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3735.json",
-        "dateUpdated": "2024-04-13T13:00:05.571Z"
       }
     ],
     "updated": [],

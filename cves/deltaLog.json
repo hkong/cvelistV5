@@ -1,5 +1,31 @@
 [
   {
+    "fetchTime": "2024-05-13T11:27:59.478Z",
+    "numberOfChanges": 3,
+    "new": [
+      {
+        "cveId": "CVE-2024-4822",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-4822",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/4xxx/CVE-2024-4822.json",
+        "dateUpdated": "2024-05-13T11:26:27.512Z"
+      },
+      {
+        "cveId": "CVE-2024-4823",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-4823",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/4xxx/CVE-2024-4823.json",
+        "dateUpdated": "2024-05-13T11:27:26.304Z"
+      },
+      {
+        "cveId": "CVE-2024-4825",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-4825",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/4xxx/CVE-2024-4825.json",
+        "dateUpdated": "2024-05-13T11:23:20.416Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2024-05-13T10:32:53.314Z",
     "numberOfChanges": 6,
     "new": [
@@ -56436,34 +56462,6 @@
         "dateUpdated": "2024-04-13T11:34:19.707Z"
       }
     ],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-04-13T11:22:33.672Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2024-26817",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-26817",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/26xxx/CVE-2024-26817.json",
-        "dateUpdated": "2024-04-13T11:17:08.764Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-04-13T11:04:52.491Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2024-3719",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-3719",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/3xxx/CVE-2024-3719.json",
-        "dateUpdated": "2024-04-13T11:00:05.430Z"
-      }
-    ],
-    "updated": [],
     "error": []
   }
 ]

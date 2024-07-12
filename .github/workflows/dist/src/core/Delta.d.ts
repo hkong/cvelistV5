@@ -3,10 +3,6 @@
  *  Changes can be a new added file, updated file, or deleted file (though currently, we do not work with deleted
  *  files since no CVEs should ever be deleted once it is published).
  *
- *  Note that this class REQUIRES git and a git history.  It does not look at files, only git commits in git history.
- *  So during testing, simply copying /cves from another directory WILL NOT WORK because git history
- *  does not have those commits.
- *
  *  When making zip files, this class copies CVE JSON files from /cves to a directory, and zip that, so the /cves directory
  *  needs to be in the current directory
  */
@@ -60,12 +56,7 @@ export declare class Delta {
      *                   deltas to the privous ones (default is none)
      */
     constructor(prevDelta?: Partial<Delta>);
-    /**
-     * Factory that generates a new Delta from git log based on a time window
-     * @param start git log start time window
-     * @param stop git log stop time window (defaults to now)
-     */
-    static newDeltaFromGitHistory(start: string, stop?: string, repository?: string): Promise<Delta>;
+    static fromDeltaFile(relFilepath: string): Delta | undefined;
     /**
      * updates data in new and updated lists using CVE ID
      */
@@ -77,11 +68,6 @@ export declare class Delta {
      *  @todo should be in a separate CveId or CveRecord class
      */
     static getCveIdMetaData(path: string): [string | undefined, string | undefined];
-    /** calculates the delta filtering using the specified directory
-     *  @param prevDelta the previous delta
-     *  @param dir directory to filter (note that this cannot have `./` or `../` since this is only doing a simple string match)
-     */
-    static calculateDelta(prevDelta: Partial<Delta>, dir: string): Promise<Delta>;
     /**
      * pure function:  given origQueue, this will either add cve if it is not already in origQueue
      * or replace the original in origQueue with cve
@@ -101,17 +87,10 @@ export declare class Delta {
      *  @param queue the DeltaQueue enum specifying which queue to add to
      */
     add(cve: CveCorePlus, queue: DeltaQueue): void;
+    /**
+     * returns all CVEs from new and updated queues
+     */
+    getAllUniqueNewAndUpdatedCves(): Array<CveCorePlus>;
     /** summarize the information in this Delta object in human-readable form */
     toText(): string;
-    /** writes the delta to a JSON file
-     *  @param relFilepath relative path from current directory
-    */
-    writeFile(relFilepath?: string): void;
-    /**
-     * Copies delta CVEs to a specified directory, and optionally zip the resulting directory
-     * @param relDir optional relative path from current directory to write the delta CVEs, default is `deltas` directory
-     * @param zipFile optional relative path from the current directory to write the zip file, default is NOT to write to zip
-     */
-    writeCves(relDir?: string | undefined, zipFile?: string | undefined): void;
-    writeTextFile(relFilepath?: string): void;
 }

@@ -1,5 +1,37 @@
 [
   {
+    "fetchTime": "2024-07-15T21:10:03.863Z",
+    "numberOfChanges": 4,
+    "new": [],
+    "updated": [
+      {
+        "cveId": "CVE-2023-21749",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-21749",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/21xxx/CVE-2023-21749.json",
+        "dateUpdated": "2024-07-15T20:55:05.695Z"
+      },
+      {
+        "cveId": "CVE-2023-21779",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-21779",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/21xxx/CVE-2023-21779.json",
+        "dateUpdated": "2024-07-15T20:56:06.602Z"
+      },
+      {
+        "cveId": "CVE-2023-28389",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2023-28389",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/28xxx/CVE-2023-28389.json",
+        "dateUpdated": "2024-07-15T21:07:47.885Z"
+      },
+      {
+        "cveId": "CVE-2024-24810",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-24810",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/24xxx/CVE-2024-24810.json",
+        "dateUpdated": "2024-07-15T20:58:05.182Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2024-07-15T20:54:59.226Z",
     "numberOfChanges": 5,
     "new": [],
@@ -83772,26 +83804,6 @@
       }
     ],
     "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2024-06-15T20:55:25.287Z",
-    "numberOfChanges": 2,
-    "new": [],
-    "updated": [
-      {
-        "cveId": "CVE-2024-27157",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-27157",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/27xxx/CVE-2024-27157.json",
-        "dateUpdated": "2024-06-15T20:51:59.211Z"
-      },
-      {
-        "cveId": "CVE-2024-5469",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-5469",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/5xxx/CVE-2024-5469.json",
-        "dateUpdated": "2024-06-15T20:49:28.558Z"
-      }
-    ],
     "error": []
   }
 ]

@@ -1,3 +1,5 @@
+> **THIS IS A TEST REPOSITORY!!! DO NOT USE THIS FOR GETTING CVES.  USE https://github.com/CVEProject/cvelistV5 INSTEAD !!!**
+
 > **Note 2024-07-16 on upcoming CVE Program Container launch**:  The Secretariat Program Container deployment has been delayed.  Check this page in the coming days for details of the new deployment date
 
 > **Note 2024-05-08 5:30pm**:  CVE REST Services was updated to the CVE Record Format Schema 5.1 on 2024-05-08 at 5:30pm EDT.  With this update, a CVE Record in this repository may now be either a 5.0 or a 5.1 formatted record.   The format is reflected in the the "dataversion" field.  Users of this repository who "validate" CVE records are advised to validate records by using the  appropriate version of the schema (i.e, 5.0 or 5.1) as reflected in this field.  Users should not determine which schema to use based on the deployment date of the new format (i.e., 2024-05-08 at 5:30pm EDT)  as there are inconsistencies in published/updated date values.

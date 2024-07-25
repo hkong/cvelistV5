@@ -9,13 +9,19 @@ on:
   # note also that github does not guarantee specified time, and it can start much later than specified
   schedule:
     - cron: '0 * * * *'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
+      # logLevel:
+      #   description: 'Log level'
+      #   required: false
+      #   default: 'debug'
+      params:
+        description: 'command line arguments to update'
         required: false
-        default: 'debug'
+        default: ''
+
 jobs:
   generate-name:
     environment: deployment
@@ -35,6 +41,7 @@ jobs:
       CVES_BASE_DIRECTORY: cves
       CVES_RECENT_ACTIVITIES_FILENAME: recent_activities.json
       CVES_DEFAULT_UPDATE_LOOKBACK_IN_MINS: 180
+      CVES_MAX_ALLOWABLE_CVE_YEAR: 2025
       CVE_API_ORG: ${{secrets.CVE_API_ORG}}
       CVE_API_USER: ${{secrets.CVE_API_USER}}
       CVE_API_KEY: ${{secrets.CVE_API_KEY}}
@@ -51,11 +58,15 @@ jobs:
       #     prerelease: false
       #     # make_latest: true
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Setup Node to specific version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: Download artifact from baseline workflow
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v6
         with:
           workflow: baseline.yml
           workflow_conclusion: success
@@ -66,7 +77,7 @@ jobs:
           ls ./.github/workflows/dist
           node ./.github/workflows/dist/index.js delta
       - name: create release with source code as artifacts
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: CVE ${{ needs.generate-name.outputs.v_current_run_timestamp }}
           # body: Descriptions for CVE ${{ needs.generate-name.outputs.v_current_run_timestamp }} goes here

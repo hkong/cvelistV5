@@ -59,9 +59,11 @@ jobs:
           git remote set-url origin https://${GITHUB_TOKEN}@github.com/${{github.repository}}.git
           export PREV_TS=$(jq -c -r .[2].fetchTime < $CVES_BASE_DIRECTORY/deltaLog.json)
           node ./.github/workflows/dist/index.js update ${{ github.event.inputs.params }} --start=$PREV_TS
+          node ./.github/workflows/dist.delta2/index.js delta --delta2
+          git commit -m 'adding delta2'
           git push
-      # - name: output
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #         core.notice("this is a notice")
+      - name: output
+        uses: actions/github-script@v7
+        with:
+          script: |
+              core.notice("testing delta2, but with separate commit")

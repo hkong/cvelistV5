@@ -63,7 +63,7 @@ jobs:
           git add cves/delta2.json
           # if there are no changes, the following avoids a error when commit
           if ! git diff-index --quiet HEAD; then
-            git commit -m 'adding delta2'
+            git commit --amend --no-edit
           fi
           git push
       - name: output

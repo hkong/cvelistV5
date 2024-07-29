@@ -61,7 +61,10 @@ jobs:
           node ./.github/workflows/dist/index.js update ${{ github.event.inputs.params }} --start=$PREV_TS
           node ./.github/workflows/dist.delta2/index.js delta --delta2
           git add cves/delta2.json
-          git commit -m 'adding delta2'
+          # if there are no changes, the following avoids a error when commit
+          if ! git diff-index --quiet HEAD; then
+            git commit -m 'adding delta2'
+          fi
           git push
       - name: output
         uses: actions/github-script@v7

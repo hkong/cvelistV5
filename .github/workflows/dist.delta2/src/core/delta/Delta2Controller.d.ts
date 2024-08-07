@@ -15,7 +15,7 @@ export declare class Delta2Controller {
     /** constructor */
     constructor(options?: Delta2ControllerOptions);
     /** builds the delta2.json and deltaLog2.json files */
-    buildDelta2(): Delta2;
+    buildDelta2(): Promise<Delta2>;
     /** outputs the delta2 */
     writeDelta2(): FsAdapter;
 }

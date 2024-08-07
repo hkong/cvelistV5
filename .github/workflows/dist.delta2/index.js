@@ -38686,7 +38686,7 @@ class CveDate {
 }
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-07-26"}');
+const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-06"}');
 ;// CONCATENATED MODULE: ./src/commands/GenericCommand.ts
 
 // read in package.json
@@ -39831,6 +39831,7 @@ var lodash_isequal_default = /*#__PURE__*/__nccwpck_require__.n(lodash_isequal);
  */
 
 
+
 class Delta2 {
     /** fetchTime is the time that the CVE data was queried/fetched
      *  While this is simple in concept, there are constraints for making this value accurate.
@@ -39857,8 +39858,8 @@ class Delta2 {
         if (value === "undetermined") {
             this._fetchTime = undefined;
         }
-        else {
-            this._fetchTime = value;
+        else if (typeof (value) === 'string') {
+            this.fetchTime = new IsoDateString(value);
         }
     }
     /** the map containing all the categories and the CVE IDs associated with each category */
@@ -44904,24 +44905,109 @@ var esm_default = (/* unused pure expression or super */ null && (gitInstanceFac
 
 //# sourceMappingURL=index.js.map
 
-;// CONCATENATED MODULE: ./src/adapters/git/GitAdapterRO.ts
-/** provides READ-ONLY access git */
+;// CONCATENATED MODULE: ./src/adapters/git/GitReader.ts
+/** Provides READ-ONLY access git functions, e.g., log, status
+ *
+ *  Note that because the git utility (and thus this class and the SimpleGit library this class
+ *  depends on) is meant to be used by one process at a time in each "clone" (i.e., each directory
+ *  that contains a `.git` subdirectory), there are operations that is not easily used or tested
+ *  in an asynchronous environment (e.g., cveUtils and jest tests).
+ *
+ *  Specifically, the methods `status()`, `add()`, and "rm()" can have non-deterministric behavior
+ *  when used asynchronously in multiple places.
+*/
 
 
 
-class GitAdapterRO {
+class GitReader {
     localDir; // must be an existing directory with a .git subdirectory
     // remoteUrl?: string; // the repository localDir uses as the remote; optional because many operations
     // can be done on the localDir without using any remote operations
     git; // the handle to the simple-git library
     /** constructor */
-    constructor(localDir) {
-        const cwd = process.cwd();
+    constructor(localDir, checkout) {
+        // const cwd = process.cwd();
         const dir = process.env.CVES_BASE_DIRECTORY;
-        this.localDir = localDir ?? external_path_default().join(process.cwd(), process.env.CVES_BASE_DIRECTORY);
+        if (localDir) {
+            this.localDir = external_path_default().join(process.cwd(), localDir);
+        }
+        else if (dir) {
+            this.localDir = external_path_default().join(process.cwd(), dir);
+        }
+        else {
+            this.localDir = __nccwpck_require__.ab + "cves";
+        }
         // console.log(`git working directory set to ${this.localDir}`);
         this.git = simpleGit(this.localDir, { binary: 'git' });
         this.git.cwd(this.localDir);
+        // if (!checkout) {
+        //   this.git.checkout({ checkout: '18f935d84b' });
+        // }
+    }
+    /** returns the git status
+     *  Note that this operation may not be deterministic if, for example, the `rm` method is called
+     *  asynchronously elsewhere in the app.  See the note for this class above for more details.
+     *
+     *  Note that while StatusResult shows files with paths relative to pwd, working
+     *  with those files (for example, add or rm) requires a full path
+     *
+     *  response is Promise to an object with these properties
+     *  {
+     *    not_added: [],  // untracked
+     *    conflicted: [], // conflicts (untested)
+     *    created: [],    // added (untested)
+     *    deleted: [],    // deleted (untested)
+     *    modified: [],   // modified (untested)
+     *    renamed: [],    // renamed (untested)
+     *    files: [],      // file by file status with index (?) and working_dir representing state (e.g., A, M, D, R, etc.)
+     *    staged: [],     // staged (untested)
+     *    ahead: 0,       // ahead of remote (untested)
+     *    behind: 0,      // behind remote (untested)
+     *    current: "main",
+     *    tracking: "origin/main",
+     *    detached: false
+     *  }
+     */
+    async status() {
+        // @todo: git.status can take options, which may make this method run faster
+        const status = await this.git.status();
+        // console.log(`status=${JSON.stringify(status, null, 2)}`);
+        return status;
+    }
+    /** returns information about commits using log
+     *  Note that unlike the command line log, the default is to return only the latest 2
+     *  commits (not all as in the command line).
+     *  @param aPath path to the file/directory you want to get info from
+     *  @param maxCount optional number of commits to return.  Pass in '-1' for all commits.  default is 2
+    */
+    async getCommits(aPath, maxCount = 2) {
+        if (!aPath.startsWith('/')) {
+            // @todo, the proper algorithm for this should be to walk up the directories
+            //  until reaching this.localDir, but the following should suffice for now
+            aPath = external_path_default().join(process.cwd(), aPath);
+        }
+        // console.log(`getCommits(${aPath},${maxCount})`);
+        let res = await this.git.raw(`log`, `--date=format:%Y-%m-%dT%H:%M:%SZ`, `--pretty=format:%H %ad`, `--max-count=${maxCount}`, aPath);
+        // console.log(`getCommits(${path},${maxCount}) res:\n`, res);
+        // res is of form (sha timestamp):
+        // 5e8a0dbc423a1eb6653a8a4c2b253dba847fc02f 2024-07-16T07:29:09Z
+        // 45e7c63ab3d07a5761ab8a8d37b0654ea1f4c797 2024-07-16T07:25:17Z
+        let result = [];
+        const lines = res.split('\n');
+        lines.forEach(line => {
+            if (line !== '') {
+                // console.log(`line=${line}`);
+                const [sha, timestamp] = line.split(' ');
+                // console.log(`sha=${sha}  timestamp=${timestamp}`);
+                const entry = {
+                    hash: sha,
+                    date: new IsoDateString(timestamp),
+                };
+                result.push(entry);
+            }
+        });
+        // console.log(`result:  ${JSON.stringify(result, null, 2)}`);
+        return result;
     }
     /** gets the latest commit hashes in reverse chronological order
      *  @param fileOrDirFullPath the full path to a file or directory, if not specified, defaults `./cves`
@@ -44930,14 +45016,18 @@ class GitAdapterRO {
      *  - when result is [], it means there are no logs associated with that file
      *  - cannot currently deal with directories
      *  - cannot get logs on .gitignore'd files/dirs
-     * @returns an array of GitLogResult
+     *  @returns an array of GitLogResult
      */
     async getLatestCommitHashes(fileOrDirFullPath = null, maxCount = 1) {
-        fileOrDirFullPath = fileOrDirFullPath ?? external_path_default().join(process.cwd(), process.env.CVES_BASE_DIRECTORY);
+        if (fileOrDirFullPath !== null || !fileOrDirFullPath.startsWith('/')) {
+            fileOrDirFullPath = external_path_default().join(process.cwd(), process.env.CVES_BASE_DIRECTORY);
+        }
+        // fileOrDirFullPath = fileOrDirFullPath ?? path.join(path.resolve(process.cwd()), process.env.CVES_BASE_DIRECTORY);
         let res = await this.git.log({
             file: fileOrDirFullPath,
             maxCount
         });
+        console.log(`git log res for ${fileOrDirFullPath}: ${JSON.stringify(res, null, 2)}`);
         let result = [];
         res.all.forEach(ent => {
             const entry = {
@@ -45054,7 +45144,7 @@ class CveComparer {
         const arr = [...comparison.added, ...comparison.removed, ...comparison.edited];
         let categories = [];
         if (arr.find(item => item[0].startsWith('containers.cna'))) {
-            categories.push('cna');
+            categories.push('cna-updated');
         }
         if (arr.find(item => item[0].startsWith('cveMetadata'))) {
             categories.push('metadata');
@@ -45115,31 +45205,78 @@ class Delta2Git {
      *  in the main runtime using a different method (calculateDelta2()) with appropriate logic,
      *  at which time this method will be deprecated.
      */
-    static calculateDelta2FromDelta1(cvesPath = null) {
-        if (!cvesPath) {
-            cvesPath = external_path_default().join(process.env.CVES_BASE_DIRECTORY, Delta2Git.kDelta1Filename);
+    static async calculateDelta2FromDelta1(delta1Path = null) {
+        if (!delta1Path) {
+            delta1Path = external_path_default().join(process.env.CVES_BASE_DIRECTORY, Delta2Git.kDelta1Filename);
         }
-        const delta1 = Delta.fromDeltaFile(cvesPath);
+        const delta1 = Delta.fromDeltaFile(delta1Path);
+        let cves = [];
+        if (delta1) {
+            delta1.new?.forEach(cve => cves.push(cve.cveId.toString()));
+            delta1.updated?.forEach(cve => cves.push(cve.cveId.toString()));
+        }
+        // let delta2: Delta2 = this.convertDelta1ToDelta2(delta1);  // this only sets cna-new and cna-updated
+        let delta2 = new Delta2();
+        delta2.fetchTime = delta1?.fetchTime;
         // see what has changed in each of the files in delta.json
-        let delta2 = this.convertDelta1ToDelta2(delta1);
-        for (let cat of delta2.categories()) {
-            let cves = delta2.getAsArray(cat);
-            // console.log(`'${cat}' cves:  ${cves}`);
-        }
+        // for (let cat of delta2.categories()) {
+        //   cves.push(...delta2.getAsArray(cat));
+        //   // console.log(`category:  '${cat}'`);
+        // }
+        console.log(`cves to review:  ${cves}`);
+        // get the cve from the same directory as the delta1
+        const dir = external_path_default().dirname(delta1Path);
+        // cves.map(async (cveid) => {
+        //   console.log(`cveid:  ${cveid}`);
+        //   const cats = await Delta2Git.calculateCveChangeCategories(cveid, dir);
+        //   // console.log(`cats:  ${cats}`);
+        //   cats.forEach(cat => {
+        //     console.log(`cat:  ${cat}`);
+        //     delta2.addToQueue(cveid, cat);
+        //   });
+        // })
+        // (async () => {
+        await Promise.allSettled(cves.map(async (cveid) => {
+            const cats = await Delta2Git.calculateCveChangeCategories(cveid, dir);
+            console.log(`cats for ${cveid}: ${cats}`);
+            cats.forEach(cat => {
+                if (cat !== 'metadata' && cat !== 'adp') {
+                    delta2.addToQueue(cveid, cat);
+                    // console.log(`cat:  ${JSON.stringify(cat)}`);
+                }
+            });
+        }));
+        // })()
+        // let cats;
+        // await Promise.allSettled(
+        //   cves.map(async (cveid) => {
+        //     cats = await Delta2Git.calculateCveChangeCategories(cveid, dir);
+        //     console.log(`cats for ${cveid}: ${cats}`);
+        //   })
+        // ).then(x => {
+        //   cats.forEach(cat => {
+        //     if (cat !== 'metadata' && cat !== 'adp')
+        //       // delta2.addToQueue(cveid, cat);
+        //       console.log(`cat:  ${JSON.stringify(cat)}`);
+        //   });
+        // }).catch(e => {
+        //   console.log(`error after promise.all:  ${JSON.stringify(e, null, 2)}`);
+        // });
         return delta2;
     }
-    /** calculates the categories adds a CVE ID into one of the categories
+    /** calculates the categories of a CVE ID into one of the categories
      *  @param cveId a CVE ID or string to be added
-     *  @param category the DeltaCategory to add to
+     *  @param cvesPath the path to look for the cve
      */
     static async calculateCveChangeCategories(cveId, cvesPath) {
         const id = (typeof cveId === 'string' || cveId instanceof String) ? new CveId(cveId) : cveId;
-        const gitAdapter = new GitAdapterRO(cvesPath);
-        const cvePath = `${process.cwd()}/${id.getFullCvePath(cvesPath)}.json`;
-        // console.log(`cvePath:  ${cvePath}`);
+        const gitAdapter = new GitReader(cvesPath);
+        // const cvePath = `${process.cwd()}/${id.getFullCvePath(cvesPath)}.json`;
+        const cvePath = `${id.getFullCvePath(cvesPath)}.json`;
+        console.log(`cvePath:  ${cvePath}`);
         try {
-            const gitLogs = await gitAdapter.getLatestCommitHashes(cvePath, 2);
-            // console.log(`gitLogs:  ${JSON.stringify(gitLogs, null, 2)}`);
+            const gitLogs = await gitAdapter.getCommits(cvePath, 2);
+            console.log(`gitLogs:  ${JSON.stringify(gitLogs, null, 2)}`);
             let retval = [];
             if (gitLogs) {
                 switch (gitLogs.length) {
@@ -45413,7 +45550,7 @@ class Delta2Controller {
         this._options = options;
     }
     /** builds the delta2.json and deltaLog2.json files */
-    buildDelta2() {
+    async buildDelta2() {
         this.delta2 = undefined;
         if (this._options.runAfterDelta1) {
             // we are running in beta mode, and running this runtime after the main runtime
@@ -45424,7 +45561,7 @@ class Delta2Controller {
             // read in delta1
             // const delta1: Delta = Delta.fromDeltaFile(this._options.delta1Filepath);
             // calculate changes into a delta2
-            this.delta2 = Delta2Git.calculateDelta2FromDelta1(this._options.delta1Filepath);
+            this.delta2 = await Delta2Git.calculateDelta2FromDelta1(this._options.delta1Filepath);
             console.log(`delta2: ${JSON.stringify(this.delta2, null, 2)}`);
         }
         return this.delta2;
@@ -45824,7 +45961,7 @@ class DeltaCommand extends GenericCommand {
                 runAfterDelta1: true
             });
             console.log(`reading from delta.log...`);
-            const delta2 = controller.buildDelta2();
+            const delta2 = await controller.buildDelta2();
             console.log(`writing to delta2.json`);
             controller.writeDelta2();
         }

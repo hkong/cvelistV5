@@ -16,10 +16,10 @@ export declare class Delta2Git {
      *  in the main runtime using a different method (calculateDelta2()) with appropriate logic,
      *  at which time this method will be deprecated.
      */
-    static calculateDelta2FromDelta1(cvesPath?: string): Delta2;
-    /** calculates the categories adds a CVE ID into one of the categories
+    static calculateDelta2FromDelta1(delta1Path?: string): Promise<Delta2>;
+    /** calculates the categories of a CVE ID into one of the categories
      *  @param cveId a CVE ID or string to be added
-     *  @param category the DeltaCategory to add to
+     *  @param cvesPath the path to look for the cve
      */
     static calculateCveChangeCategories(cveId: CveId | string, cvesPath: string): Promise<DeltaCategories[]>;
     /** converts a Delta1 object to a Delta2 object */

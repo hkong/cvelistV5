@@ -30,7 +30,7 @@ export declare class Delta2 {
      */
     private _fetchTime?;
     get fetchTime(): IsoDateString;
-    set fetchTime(value: IsoDateString | "undetermined");
+    set fetchTime(value: IsoDateString | string | "undetermined");
     /** the map containing all the categories and the CVE IDs associated with each category */
     private queues;
     /** setter

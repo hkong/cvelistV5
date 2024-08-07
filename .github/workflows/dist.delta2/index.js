@@ -38686,7 +38686,7 @@ class CveDate {
 }
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-06"}');
+const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-07"}');
 ;// CONCATENATED MODULE: ./src/commands/GenericCommand.ts
 
 // read in package.json
@@ -39860,6 +39860,9 @@ class Delta2 {
         }
         else if (typeof (value) === 'string') {
             this.fetchTime = new IsoDateString(value);
+        }
+        else if (value instanceof IsoDateString) {
+            this._fetchTime = value;
         }
     }
     /** the map containing all the categories and the CVE IDs associated with each category */

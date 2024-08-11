@@ -88,7 +88,6 @@ export declare class Delta2 {
     /** returns the number of category queues */
     numQueues(): number;
     toJSON(): {
-        version: string;
         fetchTime: string | IsoDateString;
     };
 }

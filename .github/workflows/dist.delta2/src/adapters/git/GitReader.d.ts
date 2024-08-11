@@ -46,12 +46,15 @@ export declare class GitReader {
      */
     status(): Promise<StatusResult>;
     /** returns information about commits using log
-     *  Note that unlike the command line log, the default is to return only the latest 2
-     *  commits (not all as in the command line).
+     *  - Note that unlike the command line log, the default is to return only the latest 2
+     *    commits (not all as in the command line).
+     *  - Note also that all 3 optional parameters can be used at the same time
      *  @param aPath path to the file/directory you want to get info from
      *  @param maxCount optional number of commits to return.  Pass in '-1' for all commits.  default is 2
+     *  @param startDate optional starting timestamp of log
+     *  @param stopDate optional ending timestamp of log
     */
-    getCommits(aPath: string, maxCount?: number): Promise<GitLogResult[]>;
+    getCommits(aPath: string, maxCount?: number, startDate?: IsoDateString | string, stopDate?: IsoDateString | string): Promise<GitLogResult[]>;
     /** gets the latest commit hashes in reverse chronological order
      *  @param fileOrDirFullPath the full path to a file or directory, if not specified, defaults `./cves`
      *  @param maxCount the number of hashes to get (defaults to 1)

@@ -38686,7 +38686,7 @@ class CveDate {
 }
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-07"}');
+const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-10"}');
 ;// CONCATENATED MODULE: ./src/commands/GenericCommand.ts
 
 // read in package.json
@@ -38831,6 +38831,108 @@ var startOfYesterday_default = /*#__PURE__*/__nccwpck_require__.n(startOfYesterd
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
+;// CONCATENATED MODULE: ./src/core/delta/DeltaLog2.ts
+/**
+ *  DeltaLog2 - log of current and recent historical deltas represented in the new Delta2 format
+ *  This class is an refactoring of the older DeltaLog class, with the following goals and features:
+ *  1. all the goals of Delta2 (simpler and shorter format with categorizations)
+ *  2. separate data into 3 sections: current, recent, and previous
+ *      - `current` is the same data as in delta2.json
+ *      - `recent` are Delta2 records from the previous n days
+ *      - `previous` is a link to a deltaLog2.json file that starts where the recent section ends
+ *      - in this way, the size of the file will be kept significantly smaller, which should make
+ *        processing it more efficient
+ *      - for most downstream users, polling and processing the most recent deltaLog2 file every few days
+ *        can be done with just the data in the file
+ *      - for others who access it more than a few days, they can get the full history of all changes
+ *        with a few extra reads
+ *  3. specify a Delta version number to help parsers
+ *  4. minimize file storage since we have seen github's file size limits reached in the old deltaLog file
+
+*  Intent is to log all deltas from the current delta to recent historical deltas,
+ *  so key information is stored, and other systems using deltas as polling integration points
+ *  can poll at any frequency less than the period
+ *  defined in `.env`'s `CVES_DEFAULT_DELTA_LOG_HISTORY_IN_DAYS` environment variable
+ *  (8 days is current default)
+ *
+ */
+
+class DeltaLog2 extends Array {
+    // @todo hard-coded: should be set as constant when RuntimeReader is ready
+    /** the default file name of the deltaLog2.json file */
+    static kDeltaLogFilename = `deltaLog2.json`;
+    // @todo hard-coded: should be set as constant when RuntimeReader is ready
+    /** the default partial path (from root of repository) to deltaLog2.json */
+    static kDeltaLogFilePartialPath = `cves/${DeltaLog2.kDeltaLogFilename}`;
+    // @todo hard-coded: should be set as constant when RuntimeReader is ready
+    version = '2.1';
+    // the "recent" part of the deltaLog2 is the body of this class which
+    //  is derived from Array
+    /** the previous section, containing DeltaLog2Pointer to a deltalog2.json
+     *  in a previous commit.  If this is not defined,
+     *  then this is because of one of the following:
+     *  - it was not read in correctly by DeltaLog2FsReader
+     *  - it was not previously written correctly by DeltaLog2FsWriter
+     *  - this is a arbitrarily built DeltaLog2 object, and history
+     *    is not relevant or will be built later in the process
+     *  - this is the oldest deltaLog2.json file in the git history (rare)
+     */
+    previous = undefined;
+    // ----- constructor and factory functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    /** constructor */
+    constructor() {
+        super();
+    }
+    //   // ----- class functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    //   /** prunes and returns a NEW delta log with specified start and stop fetchTimes
+    //    *  
+    //    */
+    //   static pruneByFetchTime(
+    //     origLog: DeltaLog,
+    //     startDate: IsoDateString | string,
+    //     stopDate: IsoDateString | string = null
+    //   ) {
+    //     const log = new DeltaLog();
+    //     const start = (startDate instanceof IsoDateString) ? startDate.toNumber() : new IsoDateString(startDate).toNumber();
+    //     if (!stopDate) {
+    //       stopDate = new IsoDateString();
+    //     }
+    //     const stop = (stopDate instanceof IsoDateString) ? stopDate.toNumber() : new IsoDateString(stopDate).toNumber();
+    //     origLog.forEach(ele => {
+    //       const fetchTime = new IsoDateString(ele['fetchTime']).toNumber();
+    //       if (fetchTime >= start && fetchTime <= stop) {
+    //         log.push(new Delta(ele));
+    //       }
+    //     });
+    //     return log;
+    //   }
+    //   // ----- member functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    /**
+     * prepends a delta to log
+     * @param delta the Delta object to prepend
+     */
+    prepend(delta) {
+        this.unshift(delta);
+    }
+    /** sorts the Deltas in place by the `fetchTime` property
+     *  @param direction: one of
+     *            - "latestFirst" - reverse chronological order (default)
+     *            - "latestLast" - chronological order
+    */
+    sortByFetchTme(direction = "latestFirst") {
+        return this.sort((a, b) => {
+            const d1 = a.fetchTime ?? new IsoDateString();
+            const d2 = b.fetchTime ?? new IsoDateString();
+            if (direction === 'latestFirst') {
+                return d2.toNumber() - d1.toNumber();
+            }
+            else {
+                return d1.toNumber() - d2.toNumber();
+            }
+        });
+    }
+}
+
 // EXTERNAL MODULE: external "fs"
 var external_fs_ = __nccwpck_require__(7147);
 var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
@@ -40076,7 +40178,7 @@ class Delta2 {
             lists[key] = this.getAsArray(key);
         });
         let json = {
-            version: "2.1",
+            // version: "2.1",
             fetchTime: this.fetchTime ?? "undetermined"
         };
         // cnaNew and cnaUpdated are special and goes first
@@ -44978,37 +45080,52 @@ class GitReader {
         return status;
     }
     /** returns information about commits using log
-     *  Note that unlike the command line log, the default is to return only the latest 2
-     *  commits (not all as in the command line).
+     *  - Note that unlike the command line log, the default is to return only the latest 2
+     *    commits (not all as in the command line).
+     *  - Note also that all 3 optional parameters can be used at the same time
      *  @param aPath path to the file/directory you want to get info from
      *  @param maxCount optional number of commits to return.  Pass in '-1' for all commits.  default is 2
+     *  @param startDate optional starting timestamp of log
+     *  @param stopDate optional ending timestamp of log
     */
-    async getCommits(aPath, maxCount = 2) {
+    async getCommits(aPath, maxCount = 2, startDate, stopDate) {
         if (!aPath.startsWith('/')) {
             // @todo, the proper algorithm for this should be to walk up the directories
             //  until reaching this.localDir, but the following should suffice for now
             aPath = external_path_default().join(process.cwd(), aPath);
         }
         // console.log(`getCommits(${aPath},${maxCount})`);
-        let res = await this.git.raw(`log`, `--date=format:%Y-%m-%dT%H:%M:%SZ`, `--pretty=format:%H %ad`, `--max-count=${maxCount}`, aPath);
-        // console.log(`getCommits(${path},${maxCount}) res:\n`, res);
-        // res is of form (sha timestamp):
-        // 5e8a0dbc423a1eb6653a8a4c2b253dba847fc02f 2024-07-16T07:29:09Z
-        // 45e7c63ab3d07a5761ab8a8d37b0654ea1f4c797 2024-07-16T07:25:17Z
+        if (!startDate) {
+            startDate = new IsoDateString("1970-01-01T00:00:00.000Z");
+        }
+        if (!stopDate) {
+            stopDate = new IsoDateString();
+        }
         let result = [];
-        const lines = res.split('\n');
-        lines.forEach(line => {
-            if (line !== '') {
-                // console.log(`line=${line}`);
-                const [sha, timestamp] = line.split(' ');
-                // console.log(`sha=${sha}  timestamp=${timestamp}`);
-                const entry = {
-                    hash: sha,
-                    date: new IsoDateString(timestamp),
-                };
-                result.push(entry);
-            }
-        });
+        let res;
+        try {
+            res = await this.git.raw(`log`, `--date=format:%Y-%m-%dT%H:%M:%SZ`, `--pretty=format:%H %ad`, `--max-count=${maxCount}`, `--since=${startDate.toString()}`, `--before=${stopDate.toString()}`, aPath);
+            // console.log(`getCommits(${path},${maxCount}) res:\n`, res);
+            // res is of form (sha timestamp):
+            // 5e8a0dbc423a1eb6653a8a4c2b253dba847fc02f 2024-07-16T07:29:09Z
+            // 45e7c63ab3d07a5761ab8a8d37b0654ea1f4c797 2024-07-16T07:25:17Z
+            const lines = res.split('\n');
+            lines.forEach(line => {
+                if (line !== '') {
+                    // console.log(`line=${line}`);
+                    const [sha, timestamp] = line.split(' ');
+                    // console.log(`sha=${sha}  timestamp=${timestamp}`);
+                    const entry = {
+                        hash: sha,
+                        date: new IsoDateString(timestamp),
+                    };
+                    result.push(entry);
+                }
+            });
+        }
+        catch (e) {
+            console.log(`Error when retrieving commit information for ${aPath}:  ${e.toString()}`);
+        }
         // console.log(`result:  ${JSON.stringify(result, null, 2)}`);
         return result;
     }
@@ -45505,6 +45622,7 @@ class FsAdapter extends FsAdapterRO {
  *  Delta2 file writer
  *
  */
+
 // import { FsAdapterRO, FsAdapterType } from './FsAdapterRO.js';
 
 
@@ -45527,12 +45645,221 @@ class Delta2FsWriter {
             relFilepath = Delta2FsReader.kDelta2Fullpath;
         }
         const adapter = new FsAdapter(relFilepath);
-        const str = adapter.writeString(JSON.stringify(delta));
+        const obj = lodash_clonedeep_default()(delta);
+        obj.version = "2.1";
+        const str = adapter.writeString(JSON.stringify(obj));
         return adapter;
     }
 }
 
+;// CONCATENATED MODULE: ./src/adapters/fs/DeltaLog2FsReader.ts
+/**
+ *  reader for DeltaLog2.
+ *
+ */
+
+
+
+class DeltaLog2FsReader {
+    static kDeltaLogFilename = `deltaLog2.json`;
+    static kDeltaLogFile = `cves/${DeltaLog2.kDeltaLogFilename}`;
+    // ----- constructor and factory functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    /** constructor */
+    // constructor() {
+    // }
+    /** constructs a DeltaLog2 by reading in the deltaLog2 file
+    //  *  @param pruneOlderThan optional ISO date, any items older than that date will
+    //  *    not be included in the resulting DeltaLog
+     *  @param relFilepath optional path to the logfile (defaults to cves/deltaLog.json)
+     *
+    */
+    static read(relFilepath) {
+        // if (!pruneOlderThan) {
+        //   const days = process.env.CVES_DEFAULT_DELTA_LOG_HISTORY_IN_DAYS ?? "10";
+        //   pruneOlderThan = new IsoDateString().daysAgo(parseInt(days));
+        //   // console.log(`setting pruning date to ${pruneOlderThan}`);
+        // }
+        if (!relFilepath) {
+            console.log(`setting logFile to ${DeltaLog2.kDeltaLogFilePartialPath}`);
+            relFilepath = DeltaLog2.kDeltaLogFilePartialPath;
+        }
+        // const pruneOlderThanTicks = pruneOlderThan.toNumber();
+        let log = new DeltaLog2();
+        const adapter = new FsAdapterRO(relFilepath);
+        try {
+            const str = adapter.readAll();
+            let json = [];
+            if (str.length > 0) {
+                json = JSON.parse(str);
+                // console.log(`json:  ${JSON.stringify(json, null, 2)}`);
+                const version = json['version'];
+                if (version) {
+                    log.version = version;
+                }
+                const recent = json['recent'];
+                if (recent) {
+                    recent.forEach(ele => {
+                        const delta = new Delta2();
+                        delta.set(ele);
+                        log.push(delta);
+                    });
+                }
+                const previous = json['previous'];
+                if (previous) {
+                    log.previous = previous;
+                }
+                else {
+                    log.previous = {};
+                }
+            }
+        }
+        catch (e) {
+            console.log(`Error when reading ${relFilepath}:  ${JSON.stringify(e, null, 2)} `);
+        }
+        return log;
+    }
+}
+
+;// CONCATENATED MODULE: ./src/adapters/fs/DeltaLog2FsWriter.ts
+/**
+ *  performs file system operations for DeltaLog2.
+ *
+ */
+
+
+
+class DeltaLog2FsWriter {
+    static kDeltaLogFilename = `deltaLog2.json`;
+    static kDeltaLogFile = `cves/${DeltaLog2.kDeltaLogFilename}`;
+    // ----- constructor and factory functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    /** constructor */
+    // constructor() {
+    // }
+    //   // ----- class functions ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+    //   /** prunes and returns a NEW delta log with specified start and stop fetchTimes
+    //    *
+    //    */
+    //   static pruneByFetchTime(
+    //     origLog: DeltaLog,
+    //     startDate: IsoDateString | string,
+    //     stopDate: IsoDateString | string = null
+    //   ) {
+    //     const log = new DeltaLog();
+    //     const start = (startDate instanceof IsoDateString) ? startDate.toNumber() : new IsoDateString(startDate).toNumber();
+    //     if (!stopDate) {
+    //       stopDate = new IsoDateString();
+    //     }
+    //     const stop = (stopDate instanceof IsoDateString) ? stopDate.toNumber() : new IsoDateString(stopDate).toNumber();
+    //     origLog.forEach(ele => {
+    //       const fetchTime = new IsoDateString(ele['fetchTime']).toNumber();
+    //       if (fetchTime >= start && fetchTime <= stop) {
+    //         log.push(new Delta(ele));
+    //       }
+    //     });
+    //     return log;
+    //   }
+    //   // ----- member functions ----- ----- ----- ----- ----- ----- ----- ----- -----
+    // /**
+    //  * prepends a delta to log
+    //  * @param delta the Delta object to prepend
+    //  */
+    // prepend(delta: Delta2): void {
+    //   this.unshift(delta);
+    // }
+    // /** sorts the Deltas in place by the `fetchTime` property
+    //  *  @param direction: one of
+    //  *            - "latestFirst" - reverse chronological order (default)
+    //  *            - "latestLast" - chronological order
+    // */
+    // sortByFetchTme(direction: "latestFirst" | "latestLast" = "latestFirst"): DeltaLog {
+    //   return this.sort((a, b) => {
+    //     const d1 = a.fetchTime ? new Date(a.fetchTime) : new Date();
+    //     const d2 = b.fetchTime ? new Date(b.fetchTime) : new Date();
+    //     if (direction === 'latestFirst') {
+    //       return d2.getTime() - d1.getTime();
+    //     }
+    //     else {
+    //       return d1.getTime() - d2.getTime();
+    //     }
+    //   });
+    // }
+    //   /**
+    //    * Creates a single Delta object that contains all of the CVEs in each queue as if
+    //    * all the operations within the time window had happened as a single event
+    //    * Note that if a CVE was published and then subsequently updated, that CVE
+    //    *  will show up in both the new and updated queues.  If you want all CVEs
+    //    *  from both new and updated queues, run getAllUniqueNewAndUpdatedCves() on the returned Delta object
+    //    *
+    //    * @param startWindow IsoDateString for start of time window
+    //    * @param stopWindow  optional IsoDateString for stop of time window
+    //    * @returns a single Delta object with all of the consolidated data from all the Deltas in the time window
+    //    */
+    //   consolidateDeltas(startWindow: IsoDateString, stopWindow?: IsoDateString): Delta {
+    //     if (!stopWindow) {
+    //       stopWindow = new IsoDateString();
+    //     }
+    //     const sorted = this.sortByFetchTme();
+    //     const windowed: Delta[] = sorted.filter(delta => (delta.fetchTime > startWindow.toString() && (delta.fetchTime < stopWindow.toString())));
+    //     // using object insteads of Set because set won't differientiate objects
+    //     let newList: Record<string, CveCorePlus> = {};
+    //     let updatedList: Record<string, CveCorePlus> = {};
+    //     windowed.forEach(delta => {
+    //       delta.new.forEach(item => {
+    //         newList[item.cveId.toString()] = item;
+    //       });
+    //       delta.updated.forEach(item => {
+    //         updatedList[item.cveId.toString()] = item;
+    //       });
+    //     });
+    //     // cast lists to a Delta object
+    //     let retval = new Delta();
+    //     Object.entries(newList).map((tuple) => retval.new.push(tuple[1]));
+    //     Object.entries(updatedList).map((tuple) => retval.updated.push(tuple[1]));
+    //     retval.calculateNumDelta();
+    //     retval.fetchTime = stopWindow.toString();
+    //     return retval;
+    //   }
+    //   // ----- IO ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+    /** writes deltas to a file
+     *  @param relFilepath optional relative or full filepath
+     *  @returns true iff the file was written (which only happens when
+     *    the [0] delta has changes)
+      */
+    static write(deltaLog, relFilepath) {
+        if (!relFilepath) {
+            relFilepath = DeltaLog2.kDeltaLogFilePartialPath;
+        }
+        // get previous using the fetchtime of the last delta2
+        const lastDelta = deltaLog[deltaLog.length];
+        const lastFetchTime = lastDelta?.fetchTime;
+        let previous = {};
+        if (lastFetchTime) {
+            const git = new GitReader();
+            const commits = git.getCommits('cves/deltaLog2.json', 2, lastFetchTime);
+            console.log(`commits:  ${JSON.stringify(commits, null, 2)}`);
+        }
+        const adapter = new FsAdapter(relFilepath);
+        try {
+            const json = {
+                version: deltaLog.version,
+                recent: deltaLog,
+                previous
+            };
+            adapter.writeString(JSON.stringify(json, null, 1));
+            return true;
+        }
+        catch (e) {
+            console.log(`error when writing to deltalog2.json file:  ${e.message}`);
+            throw (e);
+            return false;
+        }
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/core/delta/Delta2Controller.ts
+
+
+
 
 
 
@@ -45544,12 +45871,14 @@ class Delta2FsWriter {
 class Delta2Controller {
     _options;
     delta2;
+    deltaLog2;
     /** constructor */
     constructor(options) {
         options = options ?? {};
         options.runAfterDelta1 ?? false;
         options.delta1Filepath ?? external_path_default().join(process.env.CVES_BASE_DIRECTORY, Delta2Git.kDelta1Filename);
         options.delta2Filepath ?? external_path_default().join(process.env.CVES_BASE_DIRECTORY, Delta2FsReader.kDelta2Filename);
+        options.deltaLog2Filepath ?? external_path_default().join(process.env.CVES_BASE_DIRECTORY, DeltaLog2FsReader.kDeltaLogFilename);
         this._options = options;
     }
     /** builds the delta2.json and deltaLog2.json files */
@@ -45566,12 +45895,15 @@ class Delta2Controller {
             // calculate changes into a delta2
             this.delta2 = await Delta2Git.calculateDelta2FromDelta1(this._options.delta1Filepath);
             console.log(`delta2: ${JSON.stringify(this.delta2, null, 2)}`);
+            this.deltaLog2 = DeltaLog2FsReader.read(DeltaLog2.kDeltaLogFilePartialPath);
+            this.deltaLog2.prepend(this.delta2);
         }
         return this.delta2;
     }
     /** outputs the delta2 */
     writeDelta2() {
-        return Delta2FsWriter.write(this.delta2, this._options.delta2Filepath);
+        Delta2FsWriter.write(this.delta2, this._options.delta2Filepath);
+        DeltaLog2FsWriter.write(this.deltaLog2, this._options.delta2Filepath);
     }
 }
 
@@ -45963,9 +46295,9 @@ class DeltaCommand extends GenericCommand {
                 delta2Filepath: undefined,
                 runAfterDelta1: true
             });
-            console.log(`reading from delta.log...`);
+            console.log(`reading from delta2.json and deltaLog2.json...`);
             const delta2 = await controller.buildDelta2();
-            console.log(`writing to delta2.json`);
+            console.log(`writing to delta2.json and deltaLog2.json`);
             controller.writeDelta2();
         }
         else {

@@ -38686,7 +38686,7 @@ class CveDate {
 }
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-10"}');
+const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-12"}');
 ;// CONCATENATED MODULE: ./src/commands/GenericCommand.ts
 
 // read in package.json
@@ -45580,7 +45580,7 @@ class FsAdapter extends FsAdapterRO {
         const dirname = external_path_default().dirname(this.relFilepath);
         external_fs_default().mkdirSync(dirname, { recursive: true });
         external_fs_default().writeFileSync(this.relFilepath, data);
-        console.log(`delta file written to ${this.relFilepath}`);
+        console.log(`file written to ${this.relFilepath}`);
         return this;
     }
     /** synchronousllly copies a file or directory to a destination
@@ -45727,7 +45727,6 @@ class DeltaLog2FsReader {
  */
 
 
-
 class DeltaLog2FsWriter {
     static kDeltaLogFilename = `deltaLog2.json`;
     static kDeltaLogFile = `cves/${DeltaLog2.kDeltaLogFilename}`;
@@ -45833,11 +45832,11 @@ class DeltaLog2FsWriter {
         const lastDelta = deltaLog[deltaLog.length];
         const lastFetchTime = lastDelta?.fetchTime;
         let previous = {};
-        if (lastFetchTime) {
-            const git = new GitReader();
-            const commits = git.getCommits('cves/deltaLog2.json', 2, lastFetchTime);
-            console.log(`commits:  ${JSON.stringify(commits, null, 2)}`);
-        }
+        // if (lastFetchTime) {
+        //   const git = new GitReader();
+        //   const commits = git.getCommits('cves/deltaLog2.json', 2, lastFetchTime);
+        //   console.log(`commits:  ${JSON.stringify(commits, null, 2)}`);
+        // }
         const adapter = new FsAdapter(relFilepath);
         try {
             const json = {

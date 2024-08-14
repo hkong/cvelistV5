@@ -45,6 +45,8 @@ export declare class GitReader {
      *  }
      */
     status(): Promise<StatusResult>;
+    /** returns true iff there are changes (after applying .gitignore settings) */
+    hasChanges(): Promise<boolean>;
     /** returns information about commits using log
      *  - Note that unlike the command line log, the default is to return only the latest 2
      *    commits (not all as in the command line).

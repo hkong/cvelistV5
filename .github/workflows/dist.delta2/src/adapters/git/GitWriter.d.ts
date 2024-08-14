@@ -1,4 +1,4 @@
-/** provides git functions that change the state of git, e.g., add, commit, etc.
+/** provides git functions that change the state of git, e.g., add, commit, reset, etc.
  *
  *  Note that because the git utility (and thus this class and the SimpleGit library this class
  *  depends on) is meant to be used by one process at a time in each "clone" (i.e., each directory
@@ -41,4 +41,10 @@ export declare class GitWriter {
      *
      */
     commit(msg: string): Promise<CommitResult>;
+    /**
+     * resets the current branch by one commit if there is an unpushed commit, essentially uncommitting the last local commit
+     * @return true iff an uncommit happened
+     * @todo we should be able to specify a number other than 1, but default it to 1 since that is what we are currently using
+     */
+    uncommitLocal(): Promise<boolean>;
 }

@@ -38686,7 +38686,7 @@ class CveDate {
 }
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-12"}');
+const package_namespaceObject = JSON.parse('{"i8":"1.2.0+delta2-2024-08-13"}');
 ;// CONCATENATED MODULE: ./src/commands/GenericCommand.ts
 
 // read in package.json
@@ -38912,7 +38912,11 @@ class DeltaLog2 extends Array {
      * @param delta the Delta object to prepend
      */
     prepend(delta) {
-        this.unshift(delta);
+        // check if the delta is already in this list
+        const list = this.filter(o => delta.isEquivalentTo(o));
+        if (list.length <= 0) {
+            this.unshift(delta);
+        }
     }
     /** sorts the Deltas in place by the `fetchTime` property
      *  @param direction: one of
@@ -45049,6 +45053,16 @@ class GitReader {
         //   this.git.checkout({ checkout: '18f935d84b' });
         // }
     }
+    // /** returns true iff there are changes that can/should be commited and pushed */
+    // async hasChanges(): boolean {
+    //   const gitR = new GitReader(this.localDir);
+    //   const status = await gitR.status();
+    //   // only reset if there are local changes to be made
+    //   if (status.ahead > 0) {
+    //     const retval = this.git.reset();
+    //     console.log(`retval:  ${JSON.stringify(retval, null, 2)}`);
+    //   }
+    // }
     /** returns the git status
      *  Note that this operation may not be deterministic if, for example, the `rm` method is called
      *  asynchronously elsewhere in the app.  See the note for this class above for more details.
@@ -45078,6 +45092,24 @@ class GitReader {
         const status = await this.git.status();
         // console.log(`status=${JSON.stringify(status, null, 2)}`);
         return status;
+    }
+    /** returns true iff there are changes (after applying .gitignore settings) */
+    async hasChanges() {
+        const status = await this.status();
+        if (status.ahead > 0
+            || status.conflicted.length > 0
+            || status.created.length > 0
+            || status.deleted.length > 0
+            || status.modified.length > 0
+        // || !status.isClean
+        ) {
+            console.log(`there are local commits that can be pushed`);
+            return true;
+        }
+        else {
+            console.log(`there are no local commits that needs to be pushed`);
+            return false;
+        }
     }
     /** returns information about commits using log
      *  - Note that unlike the command line log, the default is to return only the latest 2
@@ -45855,7 +45887,104 @@ class DeltaLog2FsWriter {
     }
 }
 
+;// CONCATENATED MODULE: ./src/adapters/git/GitWriter.ts
+/** provides git functions that change the state of git, e.g., add, commit, reset, etc.
+ *
+ *  Note that because the git utility (and thus this class and the SimpleGit library this class
+ *  depends on) is meant to be used by one process at a time in each "clone" (i.e., each directory
+ *  that contains a `.git` subdirectory), there are operations that is not easily used or tested
+ *  in an asynchronous environment (e.g., cveUtils and jest tests).
+ *
+ *  Specifically, the methods `status()`, `add()`, and "rm()" can have non-deterministric behavior
+ *  when used asynchronously in multiple places.
+*/
+
+
+
+// import { IsoDateString } from '../../common/IsoDateString.js';
+// export { StatusResult, Response };
+class GitWriter {
+    // @todo: rename to gitRoot
+    localDir; // must be an existing directory with a .git subdirectory
+    // remoteUrl?: string; // the repository localDir uses as the remote; optional because many operations
+    // can be done on the localDir without using any remote operations
+    git; // the handle to the simple-git library
+    /** constructor */
+    constructor(localDir) {
+        const cwd = process.cwd();
+        const dir = process.env.CVES_BASE_DIRECTORY;
+        this.localDir = localDir ?? external_path_default().join(process.cwd(), process.env.CVES_BASE_DIRECTORY);
+        console.log(`git working directory set to ${this.localDir}`);
+        this.git = simpleGit(this.localDir, { binary: 'git' });
+        this.git.cwd(this.localDir);
+    }
+    // generic error callback
+    static genericCallback(err) {
+        if (err) {
+            console.log(`git error:  ${err}`);
+            throw err;
+        }
+        ;
+    }
+    /** git add files to git stage
+     *  Note that this operation may not be deterministic if, for example, the `rm` method is called
+     *  asynchronously elsewhere in the app.  See the note for this class above for more details.
+     *
+     *  @param filepathFromGitRoot a single file path or array of file paths to be added to stage
+     *    Note that filepathFromGitRoot must be partial paths from the git root specified in the constructor and must be under the git root
+     *    Note that filepathFromGitRoot should NOT be a directory
+     *
+     */
+    async add(filepathFromGitRoot) {
+        // console.log(`adding ${JSON.stringify(filepathFromGitRoot)}`);
+        const retval = this.git.add(filepathFromGitRoot, GitWriter.genericCallback);
+        return retval;
+    }
+    /** git rm files from git stage
+     *  Note that this operation may not be deterministic if, for example, the `rm` method is called
+     *  asynchronously elsewhere in the app.  See the note for this class above for more details.
+     *
+     *  @param fullPathFiles a single file or array of files to be added to stage
+     *    Note that fullPathFiles must be either full path specs or partial paths from this.localDir
+     *    Note that fullPathFiles should NOT be a directory
+    */
+    async rm(fullPathFiles) {
+        const retval = this.git.rm(fullPathFiles, GitWriter.genericCallback);
+        return retval;
+    }
+    /**
+     * commits staged files
+     * @param msg commit message
+     * @returns CommitResult
+     *
+     */
+    async commit(msg) {
+        const retval = this.git.commit(msg, GitWriter.genericCallback);
+        return retval;
+    }
+    /**
+     * resets the current branch by one commit if there is an unpushed commit, essentially uncommitting the last local commit
+     * @return true iff an uncommit happened
+     * @todo we should be able to specify a number other than 1, but default it to 1 since that is what we are currently using
+     */
+    async uncommitLocal() {
+        const gitR = new GitReader( /*this.localDir*/);
+        // only reset if there are local changes to be made
+        if (await gitR.hasChanges()) {
+            const retval = this.git.reset(["HEAD~1"]);
+            console.log(`retval:  ${JSON.stringify(retval, null, 2)}`);
+            return true;
+        }
+        else {
+            console.log(`no local commits to uncommit`);
+            return false;
+        }
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/core/delta/Delta2Controller.ts
+
+
 
 
 
@@ -45879,6 +46008,38 @@ class Delta2Controller {
         options.delta2Filepath ?? external_path_default().join(process.env.CVES_BASE_DIRECTORY, Delta2FsReader.kDelta2Filename);
         options.deltaLog2Filepath ?? external_path_default().join(process.env.CVES_BASE_DIRECTORY, DeltaLog2FsReader.kDeltaLogFilename);
         this._options = options;
+    }
+    /** returns true iff there are changes in the local directory that can/should be committed and pushed */
+    async hasDelta() {
+        const gitR = new GitReader( /*path.dirname(this._options.delta2Filepath)*/);
+        // const status = await gitR.status();
+        // // only reset if there are local changes to be made
+        // if (status.ahead > 0
+        //   || status.conflicted.length > 0
+        //   || status.created.length > 0
+        //   || status.deleted.length > 0
+        //   || !status.isClean
+        // ) {
+        //   console.log(`there are local commits that can be pushed`);
+        //   return true;
+        // }
+        // else {
+        //   console.log(`there are no local commits that needs to be pushed`);
+        //   return false;
+        // }
+        return gitR.hasChanges();
+    }
+    /** uncommit previously committed cves, delta, deltaLog so we can add delta2 and new commit message
+     *  @return true iff an uncommit happened
+    */
+    async uncommitDelta1() {
+        const gitW = new GitWriter( /*path.dirname(this._options.delta2Filepath)*/);
+        return gitW.uncommitLocal();
+    }
+    /** uncommit previously committed cves, delta, deltaLog so we can add delta2 and new commit message */
+    async commitDelta2() {
+        const gitW = new GitWriter( /*path.dirname(this._options.delta2Filepath)*/);
+        await gitW.commit("git commit comment goes here");
     }
     /** builds the delta2.json and deltaLog2.json files */
     async buildDelta2() {
@@ -46287,17 +46448,31 @@ class DeltaCommand extends GenericCommand {
         }
         else if (options.delta2) {
             /** currently, this only builds a Delta2 from an already existing delta.json file,
-             *  and writes the detla2 equivalent to delta2.json
+             *  and writes the detla2 equivalents to delta2.json and deltaLog2.json
              */
             const controller = new Delta2Controller({
                 delta1Filepath: undefined,
                 delta2Filepath: undefined,
                 runAfterDelta1: true
             });
-            console.log(`reading from delta2.json and deltaLog2.json...`);
-            const delta2 = await controller.buildDelta2();
-            console.log(`writing to delta2.json and deltaLog2.json`);
-            controller.writeDelta2();
+            if (await controller.hasDelta()) {
+                console.log(`about to git reset soft...`);
+                const uncommitted = await controller.uncommitDelta1();
+                if (uncommitted) {
+                    console.log(`reading from delta2.json and deltaLog2.json...`);
+                    const delta2 = await controller.buildDelta2();
+                    console.log(`delta2:  ${JSON.stringify(delta2, null, 2)}`);
+                    console.log(`writing to delta2.json and deltaLog2.json`);
+                    controller.writeDelta2();
+                    controller.commitDelta2();
+                }
+                else {
+                    console.log(`no changes, skipping delta2`);
+                }
+            }
+            else {
+                console.log(`no changes, skipping delta2`);
+            }
         }
         else {
             const timestamp = new Date();

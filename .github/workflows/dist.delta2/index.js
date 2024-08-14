@@ -46039,6 +46039,9 @@ class Delta2Controller {
     /** uncommit previously committed cves, delta, deltaLog so we can add delta2 and new commit message */
     async commitDelta2() {
         const gitW = new GitWriter( /*path.dirname(this._options.delta2Filepath)*/);
+        const gitR = new GitReader();
+        const status = await gitR.status();
+        await gitW.add(status.modified);
         await gitW.commit("git commit comment goes here");
     }
     /** builds the delta2.json and deltaLog2.json files */

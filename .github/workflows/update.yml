@@ -60,7 +60,8 @@ jobs:
           export PREV_TS=$(jq -c -r .[2].fetchTime < $CVES_BASE_DIRECTORY/deltaLog.json)
           node ./.github/workflows/dist/index.js update ${{ github.event.inputs.params }} --start=$PREV_TS
           node ./.github/workflows/dist.delta2/index.js delta --delta2
-          git add cves/delta2.json cves/deltaLog2.json
+          # git add cves/delta2.json cves/deltaLog2.json
+          # git add --all
           # if there are no changes, the following avoids a error when commit
           # if ! git diff --cached --quiet; then
           #   git commit --amend --no-edit

@@ -62,11 +62,11 @@ jobs:
           node ./.github/workflows/dist.delta2/index.js delta --delta2
           git add cves/delta2.json cves/deltaLog2.json
           # if there are no changes, the following avoids a error when commit
-          if ! git diff --cached --quiet; then
-            git commit --amend --no-edit
-          else
-            echo "no changes, no need to ammend"
-          fi
+          # if ! git diff --cached --quiet; then
+          #   git commit --amend --no-edit
+          # else
+          #   echo "no changes, no need to ammend"
+          # fi
           git push
       - name: output
         uses: actions/github-script@v7

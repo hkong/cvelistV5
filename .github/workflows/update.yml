@@ -42,13 +42,13 @@ jobs:
       CVE_API_KEY: ${{secrets.CVE_API_KEY}}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - name: Setup Node to specific version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - name: Update CVEs
         run: |
           export TEMP_TIMESTAMP=$(date '+%Y-%m-%d_%H%M_UTC')
@@ -59,9 +59,10 @@ jobs:
           git remote set-url origin https://${GITHUB_TOKEN}@github.com/${{github.repository}}.git
           export PREV_TS=$(jq -c -r .[2].fetchTime < $CVES_BASE_DIRECTORY/deltaLog.json)
           node ./.github/workflows/dist/index.js update ${{ github.event.inputs.params }} --start=$PREV_TS
+          node ./.github/workflows/dist.delta2/index.js delta --delta2
           git push
-      # - name: output
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #         core.notice("this is a notice")
+      - name: output
+        uses: actions/github-script@v7
+        with:
+          script: |
+              core.notice("testing delta2, but deltaLog2.json does not auto update it's previous section")

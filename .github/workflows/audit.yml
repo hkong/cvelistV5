@@ -13,8 +13,17 @@ on:
 jobs:
   test-job:
     name: Test Step
+    environment: deployment
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Node to specific version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: check delta
         run: |
           pwd

@@ -1,6 +1,8 @@
 ---
-name: CVE Auditor
+# GitHub Action for Level 1 auditing of CVEs
+# It is triggered whenever the CVE Update GitHub Action completes
 
+name: CVE Auditor
 on:
   workflow_run:
     workflows:
@@ -16,4 +18,5 @@ jobs:
       - name: check delta
         run: |
           pwd
+          ls -al
           head ./cves/delta.json

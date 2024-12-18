@@ -1,10 +1,10 @@
 ---
-name: Auditor
+name: CVE Auditor
 
 on:
   workflow_run:
     workflows:
-      - update
+      - CVE Update
     types:
       - completed
 

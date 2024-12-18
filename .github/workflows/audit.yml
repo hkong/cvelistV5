@@ -4,7 +4,7 @@ name: CVE Auditor
 on:
   workflow_run:
     workflows:
-      - CVE Update
+      - "CVE Update"
     types:
       - completed
 

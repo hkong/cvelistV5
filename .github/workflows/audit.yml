@@ -13,5 +13,6 @@ jobs:
     name: Test Step
     runs-on: ubuntu-latest
     steps:
-      - run: |
-        head ./cves/delta.json
+      - name: check delta
+        run: |
+          head ./cves/delta.json

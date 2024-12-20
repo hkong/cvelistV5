@@ -30,8 +30,9 @@ jobs:
         run: |
           pwd
           ls -al
+          mkdir -p .github/workflows/dist
+          curl -L -o .github/workflows/dist/index.js https://raw.githubusercontent.com/hkong/cvelistV5/refs/heads/main/.github/workflows/dist/index.js
           curl -L -o ./delta.json ${CVE_DELTALOG_JSON}
-          curl -L -o index.js https://raw.githubusercontent.com/hkong/cvelistV5/refs/heads/main/.github/workflows/dist/index.js
           ls -al
           head ./delta.json
           node ./.github/workflows/dist/index.js --version

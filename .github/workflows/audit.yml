@@ -37,5 +37,12 @@ jobs:
           curl -L -o ./delta.json ${CVE_DELTALOG_JSON}
           ls -hal
           ls -hal .github/workflows/dist
+      - name: print out some interesting environment and runtime info
+        run: |
+          echo "CI:  ${CI}"
+          echo "GITHUB_ACTION:  ${GITHUB_ACTION}""
+          echo "GITHUB_ACTIONS:  ${GITHUB_ACTIONS}""
+          echo 'delta.json head:'
           head ./delta.json
+          echo 'cveUtils version:'
           node ./.github/workflows/dist/index.mjs --version

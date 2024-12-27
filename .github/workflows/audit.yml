@@ -40,8 +40,15 @@ jobs:
       - name: print out some interesting environment and runtime info
         run: |
           echo "CI:  ${CI}"
-          echo "GITHUB_ACTION:  ${GITHUB_ACTION}""
-          echo "GITHUB_ACTIONS:  ${GITHUB_ACTIONS}""
+          echo "GITHUB_ACTION:  ${GITHUB_ACTION}"
+          echo "GITHUB_ACTIONS:  ${GITHUB_ACTIONS}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_EVENT_PATH:  ${GITHUB_EVENT_PATH}"
+          echo "GITHUB_JOB:  ${GITHUB_JOB}"
+          echo "GITHUB_REF_NAME:  ${GITHUB_REF_NAME}"
+          echo "GITHUB_WORKFLOW:  ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ENV:  ${ toJSON(GITHUB_ENV)}"
+          echo "github.event:  ${ toJSON(github.event) }"
           echo 'delta.json head:'
           head ./delta.json
           echo 'cveUtils version:'

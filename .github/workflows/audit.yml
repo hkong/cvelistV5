@@ -16,10 +16,7 @@ jobs:
     environment: deployment
     runs-on: ubuntu-latest
     env:
-      # GITHUB_URL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main
-      # https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/.github/workflows/dist/sourcemap-register.cjs
-      # https://github.com/CVEProject/cvelistV5/blob/main/cves/deltaLog.json
-      CVE_DELTALOG_JSON: https://github.com/CVEProject/cvelistV5/blob/main/cves/deltaLog.json
+      CVE_DELTALOG_JSON: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/cves/deltaLog.json
       CVE_UTIL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/.github/workflows/dist
     steps:
       # - name: Checkout repository
@@ -30,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: check delta
+      - name: download needed files
         run: |
           pwd
           ls -al
@@ -38,7 +35,7 @@ jobs:
           curl -L -o .github/workflows/dist/sourcemap-register.cjs ${CVE_UTIL_ROOT}/sourcemap-register.cjs
           curl -L -o .github/workflows/dist/index.mjs ${CVE_UTIL_ROOT}/index.js
           curl -L -o ./delta.json ${CVE_DELTALOG_JSON}
-          ls -al
-          ls -al .github/workflows/dist
+          ls -hal
+          ls -hal .github/workflows/dist
           head ./delta.json
           node ./.github/workflows/dist/index.mjs --version

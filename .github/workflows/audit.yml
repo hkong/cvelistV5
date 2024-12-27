@@ -16,9 +16,11 @@ jobs:
     environment: deployment
     runs-on: ubuntu-latest
     env:
-      GITHUB_URL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/main
-      CVE_DELTALOG_JSON: ${GITHUB_URL_ROOT}/cves/delta.json
-      CVE_UTIL_ROOT: ${GITHUB_URL_ROOT}/.github/workflows/dist
+      # GITHUB_URL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main
+      # https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/.github/workflows/dist/sourcemap-register.cjs
+      # https://github.com/CVEProject/cvelistV5/blob/main/cves/deltaLog.json
+      CVE_DELTALOG_JSON: https://github.com/CVEProject/cvelistV5/blob/main/cves/deltaLog.json
+      CVE_UTIL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/.github/workflows/dist
     steps:
       # - name: Checkout repository
       #   uses: actions/checkout@v4

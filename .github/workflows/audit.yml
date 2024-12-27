@@ -34,6 +34,7 @@ jobs:
         run: |
           pwd
           ls -al
+          ls -al .github/workflows/dist
           mkdir -p .github/workflows/dist
           curl -L -o .github/workflows/dist/sourcemap-register.cjs ${CVE_UTIL_ROOT}/sourcemap-register.cjs
           curl -L -o .github/workflows/dist/index.mjs ${CVE_UTIL_ROOT}/index.js

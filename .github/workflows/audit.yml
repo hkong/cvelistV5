@@ -18,6 +18,7 @@ jobs:
     env:
       CVE_DELTALOG_JSON: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/cves/deltaLog.json
       CVE_UTIL_ROOT: https://raw.githubusercontent.com/CVEProject/cvelistV5/refs/heads/main/.github/workflows/dist
+      GITHUB_EVENT_CONTEXT: ${{ toJSON(github.event) }}
     steps:
       # - name: Checkout repository
       #   uses: actions/checkout@v4
@@ -47,8 +48,7 @@ jobs:
           echo "GITHUB_JOB:  ${GITHUB_JOB}"
           echo "GITHUB_REF_NAME:  ${GITHUB_REF_NAME}"
           echo "GITHUB_WORKFLOW:  ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ENV:  ${ toJSON(GITHUB_ENV)}"
-          echo "github.event:  ${ toJSON(github.event) }"
+          echo "github.event:  ${GITHUB_EVENT_CONTEXT}"
           echo 'delta.json head:'
           head ./delta.json
           echo 'cveUtils version:'

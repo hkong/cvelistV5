@@ -41,4 +41,4 @@ jobs:
           ls -al
           ls -al .github/workflows/dist
           head ./delta.json
-          node ./.github/workflows/dist/index.js --version
+          node ./.github/workflows/dist/index.mjs --version

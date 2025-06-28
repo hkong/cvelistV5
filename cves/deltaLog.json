@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2025-06-28T17:32:16.344Z",
+    "numberOfChanges": 1,
+    "new": [
+      {
+        "cveId": "CVE-2025-6820",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-6820",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/6xxx/CVE-2025-6820.json",
+        "dateUpdated": "2025-06-28T17:31:05.378Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2025-06-28T16:38:44.362Z",
     "numberOfChanges": 1,
     "new": [
@@ -83017,47 +83031,6 @@
         "dateUpdated": "2025-05-29T17:24:27.206Z"
       }
     ],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-05-29T17:10:01.921Z",
-    "numberOfChanges": 2,
-    "new": [
-      {
-        "cveId": "CVE-2024-51392",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2024-51392",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/51xxx/CVE-2024-51392.json",
-        "dateUpdated": "2025-05-29T16:58:35.167Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2025-48742",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-48742",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/48xxx/CVE-2025-48742.json",
-        "dateUpdated": "2025-05-29T17:03:44.340Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-05-29T16:52:04.515Z",
-    "numberOfChanges": 2,
-    "new": [
-      {
-        "cveId": "CVE-2025-46570",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-46570",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/46xxx/CVE-2025-46570.json",
-        "dateUpdated": "2025-05-29T16:32:42.794Z"
-      },
-      {
-        "cveId": "CVE-2025-46722",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-46722",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/46xxx/CVE-2025-46722.json",
-        "dateUpdated": "2025-05-29T16:36:12.879Z"
-      }
-    ],
-    "updated": [],
     "error": []
   }
 ]

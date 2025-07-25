@@ -1,26 +1,45 @@
 {
-  "fetchTime": "2025-07-24T23:42:51.446Z",
-  "numberOfChanges": 3,
+  "fetchTime": "2025-07-25T01:13:39.003Z",
+  "numberOfChanges": 6,
   "new": [
+    {
+      "cveId": "CVE-2025-0251",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-0251",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/0xxx/CVE-2025-0251.json",
+      "dateUpdated": "2025-07-25T00:20:54.150Z"
+    },
+    {
+      "cveId": "CVE-2025-0252",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-0252",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/0xxx/CVE-2025-0252.json",
+      "dateUpdated": "2025-07-25T00:19:29.552Z"
+    },
+    {
+      "cveId": "CVE-2025-0253",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-0253",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/0xxx/CVE-2025-0253.json",
+      "dateUpdated": "2025-07-25T00:16:19.560Z"
+    },
+    {
+      "cveId": "CVE-2025-8125",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-8125",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/8xxx/CVE-2025-8125.json",
+      "dateUpdated": "2025-07-25T01:02:18.021Z"
+    }
+  ],
+  "updated": [
+    {
+      "cveId": "CVE-2025-0249",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-0249",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/0xxx/CVE-2025-0249.json",
+      "dateUpdated": "2025-07-25T00:37:41.426Z"
+    },
     {
       "cveId": "CVE-2025-0250",
       "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-0250",
       "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/0xxx/CVE-2025-0250.json",
-      "dateUpdated": "2025-07-24T23:28:00.736Z"
-    },
-    {
-      "cveId": "CVE-2025-7742",
-      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7742",
-      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7742.json",
-      "dateUpdated": "2025-07-24T23:28:32.443Z"
-    },
-    {
-      "cveId": "CVE-2025-8124",
-      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-8124",
-      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/8xxx/CVE-2025-8124.json",
-      "dateUpdated": "2025-07-24T23:32:09.717Z"
+      "dateUpdated": "2025-07-25T00:36:16.177Z"
     }
   ],
-  "updated": [],
   "error": []
 }

@@ -1,5 +1,38 @@
 [
   {
+    "fetchTime": "2025-09-08T16:43:01.085Z",
+    "numberOfChanges": 4,
+    "new": [
+      {
+        "cveId": "CVE-2025-10097",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-10097",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/10xxx/CVE-2025-10097.json",
+        "dateUpdated": "2025-09-08T16:32:06.882Z"
+      },
+      {
+        "cveId": "CVE-2025-51586",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-51586",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/51xxx/CVE-2025-51586.json",
+        "dateUpdated": "2025-09-08T16:36:17.752Z"
+      }
+    ],
+    "updated": [
+      {
+        "cveId": "CVE-2025-10079",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-10079",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/10xxx/CVE-2025-10079.json",
+        "dateUpdated": "2025-09-08T16:25:22.018Z"
+      },
+      {
+        "cveId": "CVE-2025-10080",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-10080",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/10xxx/CVE-2025-10080.json",
+        "dateUpdated": "2025-09-08T16:21:44.499Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2025-09-08T16:21:28.114Z",
     "numberOfChanges": 7,
     "new": [],
@@ -79686,20 +79719,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-8759",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/8xxx/CVE-2025-8759.json",
         "dateUpdated": "2025-08-09T17:02:05.648Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-08-09T16:32:49.868Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2025-8758",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-8758",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/8xxx/CVE-2025-8758.json",
-        "dateUpdated": "2025-08-09T16:02:05.577Z"
       }
     ],
     "updated": [],

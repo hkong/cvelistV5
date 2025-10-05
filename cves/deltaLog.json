@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2025-10-05T22:20:58.539Z",
+    "numberOfChanges": 1,
+    "new": [
+      {
+        "cveId": "CVE-2025-11306",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-11306",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/11xxx/CVE-2025-11306.json",
+        "dateUpdated": "2025-10-05T22:02:07.683Z"
+      }
+    ],
+    "updated": [],
+    "error": []
+  },
+  {
     "fetchTime": "2025-10-05T21:37:42.624Z",
     "numberOfChanges": 1,
     "new": [
@@ -84959,47 +84973,6 @@
       }
     ],
     "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-09-05T21:59:00.169Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2025-58367",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-58367",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/58xxx/CVE-2025-58367.json",
-        "dateUpdated": "2025-09-05T21:52:31.743Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-09-05T21:38:35.733Z",
-    "numberOfChanges": 3,
-    "new": [
-      {
-        "cveId": "CVE-2025-10027",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-10027",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/10xxx/CVE-2025-10027.json",
-        "dateUpdated": "2025-09-05T21:32:06.930Z"
-      },
-      {
-        "cveId": "CVE-2025-58366",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-58366",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/58xxx/CVE-2025-58366.json",
-        "dateUpdated": "2025-09-05T21:29:46.796Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2014-9200",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2014-9200",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2014/9xxx/CVE-2014-9200.json",
-        "dateUpdated": "2025-09-05T21:34:15.852Z"
-      }
-    ],
     "error": []
   }
 ]

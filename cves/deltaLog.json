@@ -1,5 +1,44 @@
 [
   {
+    "fetchTime": "2025-11-12T20:46:17.633Z",
+    "numberOfChanges": 5,
+    "new": [
+      {
+        "cveId": "CVE-2025-64186",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-64186",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/64xxx/CVE-2025-64186.json",
+        "dateUpdated": "2025-11-12T20:34:04.321Z"
+      }
+    ],
+    "updated": [
+      {
+        "cveId": "CVE-2025-25236",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-25236",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/25xxx/CVE-2025-25236.json",
+        "dateUpdated": "2025-11-12T20:37:39.756Z"
+      },
+      {
+        "cveId": "CVE-2025-30509",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-30509",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/30xxx/CVE-2025-30509.json",
+        "dateUpdated": "2025-11-12T20:36:22.311Z"
+      },
+      {
+        "cveId": "CVE-2025-56503",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-56503",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/56xxx/CVE-2025-56503.json",
+        "dateUpdated": "2025-11-12T20:40:52.774Z"
+      },
+      {
+        "cveId": "CVE-2025-63384",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-63384",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/63xxx/CVE-2025-63384.json",
+        "dateUpdated": "2025-11-12T20:39:11.448Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2025-11-12T20:32:29.521Z",
     "numberOfChanges": 116,
     "new": [
@@ -161947,57 +161986,6 @@
       }
     ],
     "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-10-13T20:41:28.887Z",
-    "numberOfChanges": 7,
-    "new": [
-      {
-        "cveId": "CVE-2025-62364",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-62364",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/62xxx/CVE-2025-62364.json",
-        "dateUpdated": "2025-10-13T20:30:56.391Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2025-11633",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-11633",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/11xxx/CVE-2025-11633.json",
-        "dateUpdated": "2025-10-13T20:32:19.433Z"
-      },
-      {
-        "cveId": "CVE-2025-11634",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-11634",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/11xxx/CVE-2025-11634.json",
-        "dateUpdated": "2025-10-13T20:34:02.619Z"
-      },
-      {
-        "cveId": "CVE-2025-9720",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-9720",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/9xxx/CVE-2025-9720.json",
-        "dateUpdated": "2025-10-13T20:32:37.916Z"
-      },
-      {
-        "cveId": "CVE-2025-9721",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-9721",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/9xxx/CVE-2025-9721.json",
-        "dateUpdated": "2025-10-13T20:32:54.904Z"
-      },
-      {
-        "cveId": "CVE-2025-9722",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-9722",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/9xxx/CVE-2025-9722.json",
-        "dateUpdated": "2025-10-13T20:33:11.971Z"
-      },
-      {
-        "cveId": "CVE-2025-9723",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-9723",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/9xxx/CVE-2025-9723.json",
-        "dateUpdated": "2025-10-13T20:33:22.929Z"
-      }
-    ],
     "error": []
   }
 ]

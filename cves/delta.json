@@ -1,25 +1,38 @@
 {
-  "fetchTime": "2025-11-27T15:19:43.837Z",
-  "numberOfChanges": 3,
-  "new": [],
+  "fetchTime": "2025-11-27T15:38:45.781Z",
+  "numberOfChanges": 5,
+  "new": [
+    {
+      "cveId": "CVE-2025-13757",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-13757",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13757.json",
+      "dateUpdated": "2025-11-27T15:30:30.532Z"
+    },
+    {
+      "cveId": "CVE-2025-13758",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-13758",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13758.json",
+      "dateUpdated": "2025-11-27T15:30:47.944Z"
+    },
+    {
+      "cveId": "CVE-2025-13765",
+      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-13765",
+      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13765.json",
+      "dateUpdated": "2025-11-27T15:30:13.028Z"
+    }
+  ],
   "updated": [
     {
       "cveId": "CVE-2021-4472",
       "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2021-4472",
       "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/4xxx/CVE-2021-4472.json",
-      "dateUpdated": "2025-11-27T15:16:22.760Z"
-    },
-    {
-      "cveId": "CVE-2025-13601",
-      "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-13601",
-      "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13601.json",
-      "dateUpdated": "2025-11-27T15:03:21.606Z"
+      "dateUpdated": "2025-11-27T15:20:14.875Z"
     },
     {
       "cveId": "CVE-2025-7195",
       "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
       "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
-      "dateUpdated": "2025-11-27T15:16:24.201Z"
+      "dateUpdated": "2025-11-27T15:35:09.181Z"
     }
   ],
   "error": []

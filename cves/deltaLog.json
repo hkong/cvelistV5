@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2025-12-04T23:45:39.962Z",
+    "numberOfChanges": 1,
+    "new": [],
+    "updated": [
+      {
+        "cveId": "CVE-2025-7195",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
+        "dateUpdated": "2025-12-04T23:42:41.512Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2025-12-04T23:33:07.333Z",
     "numberOfChanges": 5,
     "new": [],
@@ -93729,39 +93743,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2019-18860",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2019/18xxx/CVE-2019-18860.json",
         "dateUpdated": "2025-11-05T00:12:37.231Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-11-04T23:33:59.895Z",
-    "numberOfChanges": 4,
-    "new": [
-      {
-        "cveId": "CVE-2025-64110",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-64110",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/64xxx/CVE-2025-64110.json",
-        "dateUpdated": "2025-11-04T23:24:46.313Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2014-5418",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2014-5418",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2014/5xxx/CVE-2014-5418.json",
-        "dateUpdated": "2025-11-04T23:30:32.557Z"
-      },
-      {
-        "cveId": "CVE-2014-5419",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2014-5419",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2014/5xxx/CVE-2014-5419.json",
-        "dateUpdated": "2025-11-04T23:32:07.026Z"
-      },
-      {
-        "cveId": "CVE-2015-3976",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2015-3976",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2015/3xxx/CVE-2015-3976.json",
-        "dateUpdated": "2025-11-04T23:33:49.742Z"
       }
     ],
     "error": []

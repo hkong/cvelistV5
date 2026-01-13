@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2026-01-13T23:53:43.579Z",
+    "numberOfChanges": 1,
+    "new": [],
+    "updated": [
+      {
+        "cveId": "CVE-2025-7195",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
+        "dateUpdated": "2026-01-13T23:44:11.332Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2026-01-13T23:27:37.272Z",
     "numberOfChanges": 6,
     "new": [
@@ -101302,41 +101316,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-67901",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/67xxx/CVE-2025-67901.json",
         "dateUpdated": "2025-12-14T23:57:33.595Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-12-14T23:51:06.077Z",
-    "numberOfChanges": 1,
-    "new": [
-      {
-        "cveId": "CVE-2025-67901",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-67901",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/67xxx/CVE-2025-67901.json",
-        "dateUpdated": "2025-12-14T23:50:38.953Z"
-      }
-    ],
-    "updated": [],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-12-14T23:40:51.354Z",
-    "numberOfChanges": 2,
-    "new": [
-      {
-        "cveId": "CVE-2025-14692",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-14692",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/14xxx/CVE-2025-14692.json",
-        "dateUpdated": "2025-12-14T23:32:09.566Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2025-7195",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
-        "dateUpdated": "2025-12-14T23:39:27.507Z"
       }
     ],
     "error": []

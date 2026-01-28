@@ -1,5 +1,19 @@
 [
   {
+    "fetchTime": "2026-01-28T04:45:08.981Z",
+    "numberOfChanges": 1,
+    "new": [],
+    "updated": [
+      {
+        "cveId": "CVE-2025-7195",
+        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
+        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
+        "dateUpdated": "2026-01-28T04:42:27.970Z"
+      }
+    ],
+    "error": []
+  },
+  {
     "fetchTime": "2026-01-28T03:56:28.893Z",
     "numberOfChanges": 12,
     "new": [
@@ -117724,39 +117738,6 @@
         "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
         "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
         "dateUpdated": "2025-12-29T05:16:47.631Z"
-      }
-    ],
-    "error": []
-  },
-  {
-    "fetchTime": "2025-12-29T04:41:24.388Z",
-    "numberOfChanges": 4,
-    "new": [
-      {
-        "cveId": "CVE-2025-15171",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-15171",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/15xxx/CVE-2025-15171.json",
-        "dateUpdated": "2025-12-29T04:02:05.763Z"
-      },
-      {
-        "cveId": "CVE-2025-15172",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-15172",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/15xxx/CVE-2025-15172.json",
-        "dateUpdated": "2025-12-29T04:32:08.554Z"
-      }
-    ],
-    "updated": [
-      {
-        "cveId": "CVE-2025-15067",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-15067",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/15xxx/CVE-2025-15067.json",
-        "dateUpdated": "2025-12-29T04:34:27.492Z"
-      },
-      {
-        "cveId": "CVE-2025-7195",
-        "cveOrgLink": "https://www.cve.org/CVERecord?id=CVE-2025-7195",
-        "githubLink": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/7xxx/CVE-2025-7195.json",
-        "dateUpdated": "2025-12-29T04:40:42.344Z"
       }
     ],
     "error": []

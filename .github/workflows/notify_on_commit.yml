@@ -1,0 +1,61 @@
+name: Notify Destination Repo
+
+on:
+  # Enables manual runs of this workflow from the Actions tab
+  workflow_dispatch:
+    inputs:
+      params:
+        description: 'command line arguments to update'
+        required: false
+        default: ''
+  # on commit
+  push:
+    branches: [ main ]
+
+# Ensures only one notification job runs at a time per branch, plus
+# - Guaranteed Delivery: If we have back-to-back commits, setting this to true might cancel
+#   the "notify_on_commit" job before it actually finishes. This would result in the destination repository 
+#   missing a synchronization signal
+# - Sequential Ordering: By setting this to false, GitHub will "queue" the second notification.
+#   Once the first one finishes sending the dispatch, the next one starts. This ensures that the destination repo
+#   receives signals in the exact order the commits were made.
+# - Preventing API Race Conditions: If two "notify_on_commit" actions hit the GitHub API with the same destination repository
+#   at the exact same millisecond, you could (occasionally) run into a 409 Conflict or a rate-limit hiccup.
+#   Queuing them prevents this entirely.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+  
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    environment: deployment
+    env:
+      APP_ID: ${{ secrets.GITHUBAPP_NEW_COMMIT_APPID }}
+      APP_PRIVATE_KEY: ${{ secrets.GITHUBAPP_NEW_COMMIT_PRIVATE_KEY }}
+    steps:
+      - name: Generate Token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.GITHUBAPP_NEW_COMMIT_APPID }}
+          private-key: ${{ secrets.GITHUBAPP_NEW_COMMIT_PRIVATE_KEY }}
+          # Target the destination repository specifically
+          owner: ${{ github.repository_owner }}
+          repositories: "sadp-cves"
+
+      - name: Send Repository Dispatch
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ steps.generate_token.outputs.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository_owner }}/sadp-cves/dispatches \
+            -d '{
+              "event_type": "source_repo_updated",
+              "client_payload": {
+                "sha": "${{ github.sha }}",
+                "message": "New commit in source repo noted by on_commit_notifier [skip ci]"
+              }
+            }'

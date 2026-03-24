@@ -42,7 +42,7 @@ jobs:
           private-key: ${{ secrets.GITHUBAPP_NEW_COMMIT_PRIVATE_KEY }}
           # Target the destination repository specifically
           owner: ${{ github.repository_owner }}
-          repositories: "sadp-cves"
+          repositories: "sadp-pilot"
 
       - name: Send Repository Dispatch
         run: |
